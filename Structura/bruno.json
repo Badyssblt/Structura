@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Structura",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
