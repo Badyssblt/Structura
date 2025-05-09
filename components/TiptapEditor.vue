@@ -4,105 +4,114 @@
       <button
           @click="editor.chain().focus().toggleBold().run()"
           :disabled="!editor.can().chain().focus().toggleBold().run()"
-          :class="{ 'is-active': editor.isActive('bold') }"
+          :class="{ 'bg-primary': editor.isActive('bold') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:bold" size="16px"/>
+        <Icon name="heroicons:bold" size="20px" :class="{ 'text-white': editor.isActive('bold') }"/>
+
       </button>
       <button
           @click="editor.chain().focus().toggleItalic().run()"
           :disabled="!editor.can().chain().focus().toggleItalic().run()"
-          :class="{ 'is-active': editor.isActive('italic') }"
+          :class="{ 'bg-primary': editor.isActive('italic') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:italic" size="16px"/>
+        <Icon name="heroicons:italic" size="16px" :class="{ 'text-white': editor.isActive('italic') }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleStrike().run()"
           :disabled="!editor.can().chain().focus().toggleStrike().run()"
-          :class="{ 'is-active': editor.isActive('strike') }"
+          :class="{ 'bg-primary': editor.isActive('strike') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:strikethrough" size="16px"/>
+        <Icon name="heroicons:strikethrough" size="16px" :class="{ 'text-white': editor.isActive('strike') }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleCode().run()"
           :disabled="!editor.can().chain().focus().toggleCode().run()"
-          :class="{ 'is-active': editor.isActive('code') }"
+          :class="{ 'bg-primary': editor.isActive('code') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:code-bracket" size="16px"/>
+        <Icon name="heroicons:code-bracket" size="16px" :class="{ 'text-white': editor.isActive('code') }"/>
       </button>
       <button
           @click="editor.chain().focus().setParagraph().run()"
-          :class="{ 'is-active': editor.isActive('paragraph') }"
+          :class="{ 'bg-primary': editor.isActive('paragraph') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="ic:outline-local-parking" size="16px"/>
+        <Icon name="ic:outline-local-parking" size="16px" :class="{ 'text-white': editor.isActive('paragraph') }"/>
 
       </button>
       <button
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-          :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+          :class="{ 'bg-primary': editor.isActive('heading', { level: 1 }) }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:h1" size="16px"/>
+        <Icon name="heroicons:h1" size="16px" :class="{ 'text-white': editor.isActive('heading', { level: 1 }) }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-          :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+          :class="{ 'bg-primary': editor.isActive('heading', { level: 2 }) }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:h2" size="16px"/>
+        <Icon name="heroicons:h2" size="16px" :class="{ 'text-white': editor.isActive('heading', { level: 2 }) }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-          :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
+          :class="{ 'bg-primary': editor.isActive('heading', { level: 3 }) }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:h3" size="16px"/>
+        <Icon name="heroicons:h3" size="16px" :class="{ 'text-white': editor.isActive('heading', { level: 3 }) }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleHeading({ level: 4 }).run()"
-          :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }"
+          :class="{ 'bg-primary': editor.isActive('heading', { level: 4 }) }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:h4" size="16px"/>
+        <Icon name="heroicons:h4" size="16px" :class="{ 'text-white': editor.isActive('heading', { level: 4 }) }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleHeading({ level: 5 }).run()"
-          :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }"
+          :class="{ 'bg-primary': editor.isActive('heading', { level: 5 }) }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:h5" size="16px"/>
-      </button>
-      <button
-          @click="editor.chain().focus().toggleHeading({ level: 6 }).run()"
-          :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }"
-      >
-        <Icon name="heroicons:h6" size="16px"/>
-
+        <Icon name="heroicons:h5" size="16px" :class="{ 'text-white': editor.isActive('heading', { level: 5 }) }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleBulletList().run()"
-          :class="{ 'is-active': editor.isActive('bulletList') }"
+          :class="{ 'bg-primary': editor.isActive('bulletlist') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:list-bullet" size="16px"/>
+        <Icon name="heroicons:list-bullet" size="16px" :class="{ 'text-white': editor.isActive('bulletlist') }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleOrderedList().run()"
-          :class="{ 'is-active': editor.isActive('orderedList') }"
+          :class="{ 'bg-primary': editor.isActive('orderedlist') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="heroicons:numbered-list" size="16px"/>
+        <Icon name="heroicons:numbered-list" size="16px" :class="{ 'text-white': editor.isActive('orderedlist') }"/>
       </button>
       <button
           @click="editor.chain().focus().toggleCodeBlock().run()"
-          :class="{ 'is-active': editor.isActive('codeBlock') }"
+          :class="{ 'bg-primary': editor.isActive('codeblock') }"
+          class="flex items-center p-1 rounded"
       >
         code block
       </button>
       <button
           @click="editor.chain().focus().undo().run()"
-          :disabled="!editor.can().chain().focus().undo().run()"
+          :class="{ 'bg-primary': editor.isActive('undo') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="ic:baseline-undo" size="16px"/>
+        <Icon name="ic:baseline-undo" size="16px" :class="{ 'text-white': editor.isActive('undo') }"/>
 
       </button>
       <button
           @click="editor.chain().focus().redo().run()"
-          :disabled="!editor.can().chain().focus().redo().run()"
+          :class="{ 'bg-primary': editor.isActive('redo') }"
+          class="flex items-center p-1 rounded"
       >
-        <Icon name="ic:baseline-redo" size="16px"/>
+        <Icon name="ic:baseline-redo" size="16px" :class="{ 'text-white': editor.isActive('redo') }"/>
       </button>
     </div>
     <TiptapEditorContent :editor="editor" class="border rounded p-2"/>
