@@ -146,7 +146,8 @@ exports.Prisma.PageScalarFieldEnum = {
   order: 'order',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  is_public: 'is_public'
+  is_public: 'is_public',
+  category: 'category'
 };
 
 exports.Prisma.PageRevisionScalarFieldEnum = {

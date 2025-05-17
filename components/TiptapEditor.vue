@@ -114,7 +114,7 @@
         <Icon name="ic:baseline-redo" size="16px" :class="{ 'text-white': editor.isActive('redo') }"/>
       </button>
     </div>
-    <TiptapEditorContent :editor="editor" class="border rounded p-2"/>
+    <TiptapEditorContent :editor="editor" class="border rounded p-2 min-h-screen"/>
   </div>
 </template>
 
@@ -122,20 +122,28 @@
 import 'highlight.js/styles/github-dark.css';
 
 const lowlight = createLowlight(allLanguages)
+const model = defineModel()
+
 
 const editor = useEditor({
-  content: "<p>I'm running Tiptap with Vue.js. 🎉</p>",
+  content: model.value,
   extensions: [
     TiptapStarterKit.configure({
       codeBlock: false,
     }),
     TiptapCodeBlockLowlight.configure({ lowlight }),
   ],
+  onUpdate({ editor }){
+    model.value = editor.getHTML()
+  }
 });
 
 onBeforeUnmount(() => {
   unref(editor).destroy();
 });
+
+
+
 </script>
 
 <style>
@@ -163,14 +171,15 @@ onBeforeUnmount(() => {
   border-radius: 0.5rem;
   margin: 1.5rem 0;
   padding: 0.75rem 1rem;
+  background: #0d1117;
 }
 
-.tiptap pre code {
-  background: #0d1117;
+.tiptap code {
   color: inherit;
   font-size: 0.8rem;
   padding: 10px;
   border-radius: 5px;
+  color: white;
 }
 
 /* Code styling */

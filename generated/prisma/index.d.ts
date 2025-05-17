@@ -4292,6 +4292,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     is_public: boolean | null
+    category: string | null
   }
 
   export type PageMaxAggregateOutputType = {
@@ -4303,6 +4304,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     is_public: boolean | null
+    category: string | null
   }
 
   export type PageCountAggregateOutputType = {
@@ -4315,6 +4317,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     is_public: number
+    category: number
     _all: number
   }
 
@@ -4336,6 +4339,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     is_public?: true
+    category?: true
   }
 
   export type PageMaxAggregateInputType = {
@@ -4347,6 +4351,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     is_public?: true
+    category?: true
   }
 
   export type PageCountAggregateInputType = {
@@ -4359,6 +4364,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     is_public?: true
+    category?: true
     _all?: true
   }
 
@@ -4458,6 +4464,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     is_public: boolean
+    category: string | null
     _count: PageCountAggregateOutputType | null
     _avg: PageAvgAggregateOutputType | null
     _sum: PageSumAggregateOutputType | null
@@ -4489,6 +4496,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     is_public?: boolean
+    category?: boolean
     parent?: boolean | Page$parentArgs<ExtArgs>
     subPages?: boolean | Page$subPagesArgs<ExtArgs>
     revisions?: boolean | Page$revisionsArgs<ExtArgs>
@@ -4505,6 +4513,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     is_public?: boolean
+    category?: boolean
     parent?: boolean | Page$parentArgs<ExtArgs>
   }, ExtArgs["result"]["page"]>
 
@@ -4518,6 +4527,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     is_public?: boolean
+    category?: boolean
     parent?: boolean | Page$parentArgs<ExtArgs>
   }, ExtArgs["result"]["page"]>
 
@@ -4531,9 +4541,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     is_public?: boolean
+    category?: boolean
   }
 
-  export type PageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "parentId" | "content" | "order" | "createdAt" | "updatedAt" | "is_public", ExtArgs["result"]["page"]>
+  export type PageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "parentId" | "content" | "order" | "createdAt" | "updatedAt" | "is_public" | "category", ExtArgs["result"]["page"]>
   export type PageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parent?: boolean | Page$parentArgs<ExtArgs>
     subPages?: boolean | Page$subPagesArgs<ExtArgs>
@@ -4564,6 +4575,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       is_public: boolean
+      category: string | null
     }, ExtArgs["result"]["page"]>
     composites: {}
   }
@@ -4999,6 +5011,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Page", 'DateTime'>
     readonly updatedAt: FieldRef<"Page", 'DateTime'>
     readonly is_public: FieldRef<"Page", 'Boolean'>
+    readonly category: FieldRef<"Page", 'String'>
   }
     
 
@@ -6592,7 +6605,8 @@ export namespace Prisma {
     order: 'order',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    is_public: 'is_public'
+    is_public: 'is_public',
+    category: 'category'
   };
 
   export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
@@ -6860,6 +6874,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Page"> | Date | string
     updatedAt?: DateTimeFilter<"Page"> | Date | string
     is_public?: BoolFilter<"Page"> | boolean
+    category?: StringNullableFilter<"Page"> | string | null
     parent?: XOR<PageNullableScalarRelationFilter, PageWhereInput> | null
     subPages?: PageListRelationFilter
     revisions?: PageRevisionListRelationFilter
@@ -6875,6 +6890,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     is_public?: SortOrder
+    category?: SortOrderInput | SortOrder
     parent?: PageOrderByWithRelationInput
     subPages?: PageOrderByRelationAggregateInput
     revisions?: PageRevisionOrderByRelationAggregateInput
@@ -6893,6 +6909,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Page"> | Date | string
     updatedAt?: DateTimeFilter<"Page"> | Date | string
     is_public?: BoolFilter<"Page"> | boolean
+    category?: StringNullableFilter<"Page"> | string | null
     parent?: XOR<PageNullableScalarRelationFilter, PageWhereInput> | null
     subPages?: PageListRelationFilter
     revisions?: PageRevisionListRelationFilter
@@ -6908,6 +6925,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     is_public?: SortOrder
+    category?: SortOrderInput | SortOrder
     _count?: PageCountOrderByAggregateInput
     _avg?: PageAvgOrderByAggregateInput
     _max?: PageMaxOrderByAggregateInput
@@ -6928,6 +6946,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Page"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Page"> | Date | string
     is_public?: BoolWithAggregatesFilter<"Page"> | boolean
+    category?: StringNullableWithAggregatesFilter<"Page"> | string | null
   }
 
   export type PageRevisionWhereInput = {
@@ -7133,6 +7152,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     parent?: PageCreateNestedOneWithoutSubPagesInput
     subPages?: PageCreateNestedManyWithoutParentInput
     revisions?: PageRevisionCreateNestedManyWithoutPageInput
@@ -7148,6 +7168,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     subPages?: PageUncheckedCreateNestedManyWithoutParentInput
     revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
@@ -7161,6 +7182,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     parent?: PageUpdateOneWithoutSubPagesNestedInput
     subPages?: PageUpdateManyWithoutParentNestedInput
     revisions?: PageRevisionUpdateManyWithoutPageNestedInput
@@ -7176,6 +7198,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
     revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
@@ -7190,6 +7213,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
   }
 
   export type PageUpdateManyMutationInput = {
@@ -7201,6 +7225,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PageUncheckedUpdateManyInput = {
@@ -7213,6 +7238,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PageRevisionCreateInput = {
@@ -7532,6 +7558,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     is_public?: SortOrder
+    category?: SortOrder
   }
 
   export type PageAvgOrderByAggregateInput = {
@@ -7547,6 +7574,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     is_public?: SortOrder
+    category?: SortOrder
   }
 
   export type PageMinOrderByAggregateInput = {
@@ -7558,6 +7586,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     is_public?: SortOrder
+    category?: SortOrder
   }
 
   export type PageSumOrderByAggregateInput = {
@@ -7673,6 +7702,10 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type PageUpdateOneWithoutSubPagesNestedInput = {
     create?: XOR<PageCreateWithoutSubPagesInput, PageUncheckedCreateWithoutSubPagesInput>
     connectOrCreate?: PageCreateOrConnectWithoutSubPagesInput
@@ -7709,10 +7742,6 @@ export namespace Prisma {
     update?: PageRevisionUpdateWithWhereUniqueWithoutPageInput | PageRevisionUpdateWithWhereUniqueWithoutPageInput[]
     updateMany?: PageRevisionUpdateManyWithWhereWithoutPageInput | PageRevisionUpdateManyWithWhereWithoutPageInput[]
     deleteMany?: PageRevisionScalarWhereInput | PageRevisionScalarWhereInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type PageUncheckedUpdateManyWithoutParentNestedInput = {
@@ -7933,6 +7962,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     parent?: PageCreateNestedOneWithoutSubPagesInput
     revisions?: PageRevisionCreateNestedManyWithoutPageInput
   }
@@ -7947,6 +7977,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
 
@@ -7964,6 +7995,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     subPages?: PageCreateNestedManyWithoutParentInput
     revisions?: PageRevisionCreateNestedManyWithoutPageInput
   }
@@ -7977,6 +8009,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     subPages?: PageUncheckedCreateNestedManyWithoutParentInput
     revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
@@ -8035,6 +8068,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     parent?: PageUpdateOneWithoutSubPagesNestedInput
     revisions?: PageRevisionUpdateManyWithoutPageNestedInput
   }
@@ -8049,6 +8083,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
 
@@ -8081,6 +8116,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Page"> | Date | string
     updatedAt?: DateTimeFilter<"Page"> | Date | string
     is_public?: BoolFilter<"Page"> | boolean
+    category?: StringNullableFilter<"Page"> | string | null
   }
 
   export type PageRevisionUpsertWithWhereUniqueWithoutPageInput = {
@@ -8120,6 +8156,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     parent?: PageCreateNestedOneWithoutSubPagesInput
     subPages?: PageCreateNestedManyWithoutParentInput
   }
@@ -8134,6 +8171,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
     subPages?: PageUncheckedCreateNestedManyWithoutParentInput
   }
 
@@ -8162,6 +8200,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     parent?: PageUpdateOneWithoutSubPagesNestedInput
     subPages?: PageUpdateManyWithoutParentNestedInput
   }
@@ -8176,6 +8215,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
   }
 
@@ -8188,6 +8228,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     is_public?: boolean
+    category?: string | null
   }
 
   export type PageRevisionCreateManyPageInput = {
@@ -8207,6 +8248,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     subPages?: PageUpdateManyWithoutParentNestedInput
     revisions?: PageRevisionUpdateManyWithoutPageNestedInput
   }
@@ -8220,6 +8262,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
     revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
@@ -8233,6 +8276,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
+    category?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PageRevisionUpdateWithoutPageInput = {

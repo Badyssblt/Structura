@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
-    '@prisma/nuxt',
     'shadcn-nuxt',
     'nuxt-tiptap-editor',
     '@nuxt/icon'

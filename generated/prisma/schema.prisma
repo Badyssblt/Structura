@@ -47,6 +47,7 @@ model Page {
   updatedAt DateTime       @updatedAt
   is_public Boolean        @default(false) // Visibilité de la page
   revisions PageRevision[] // Relation avec les révisions de cette page
+  category  String?
 }
 
 model PageRevision {
