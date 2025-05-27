@@ -34,20 +34,27 @@ model Setting {
   updatedAt DateTime @updatedAt
 }
 
+model Category {
+  id    String @id @default(cuid())
+  name  String
+  pages Page[] // Toutes les pages appartenant à cette catégorie
+}
+
 model Page {
-  id        String         @id @default(cuid())
-  title     String
-  slug      String         @unique
-  parentId  String?
-  parent    Page?          @relation("PageToSubPages", fields: [parentId], references: [id])
-  subPages  Page[]         @relation("PageToSubPages")
-  content   Json // Le contenu actuel de la page, structuré (Markdown, JSON, HTML)
-  order     Int // Pour trier les pages dans le menu
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  is_public Boolean        @default(false) // Visibilité de la page
-  revisions PageRevision[] // Relation avec les révisions de cette page
-  category  String?
+  id         String         @id @default(cuid())
+  title      String
+  slug       String         @unique
+  parentId   String?
+  parent     Page?          @relation("PageToSubPages", fields: [parentId], references: [id])
+  subPages   Page[]         @relation("PageToSubPages")
+  content    Json
+  order      Int
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  is_public  Boolean        @default(false)
+  revisions  PageRevision[]
+  categoryId String? // Clé étrangère optionnelle
+  category   Category?      @relation(fields: [categoryId], references: [id]) // Relation vers Category
 }
 
 model PageRevision {

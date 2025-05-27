@@ -2,8 +2,15 @@ import type { Page } from '~/types/types'
 
 export const usePages = () => {
     const pages = useState<Page[] | null>('pages', () => null)
+    const currentPage = useState<Page |null>("page", () => null)
+
+    const isLoadingPages = useState<boolean>('isLoadingPages', () => false)
+    const isDeletingPage = useState<boolean>('isDeletingPage', () => false)
+    const isPatchingPage = useState<boolean>('isPatchingPage', () => false)
+
 
     const getAllPages = async (): Promise<Page[]> => {
+        isLoadingPages.value = true
         if (!pages.value) {
             const { data, error } = await useFetch<Page[]>('/api/pages')
 
@@ -14,6 +21,7 @@ export const usePages = () => {
             pages.value = data.value
         }
 
+        isLoadingPages.value = false
         return pages.value
     }
 
@@ -25,11 +33,12 @@ export const usePages = () => {
 
         const { data, error } = await useFetch<Page>(`/api/pages/${slug}`)
 
+        currentPage.value = data.value
         if (error.value || !data.value) {
             throw createError({ statusCode: 404, statusMessage: `Page not found: ${slug}` })
         }
 
-        return data.value
+        return currentPage.value
     }
 
     // Supprime une page par son slug
@@ -50,6 +59,7 @@ export const usePages = () => {
 
     // Met à jour une page partiellement (patch)
     const patchPage = async (slug: string, patchData: Partial<Page>): Promise<Page> => {
+        isPatchingPage.value = true
         const { data, error } = await useFetch<Page>(`/api/pages/${slug}`, {
             method: 'PATCH',
             body: patchData,
@@ -67,6 +77,7 @@ export const usePages = () => {
             }
         }
 
+        isPatchingPage.value = false
         return data.value
     }
 
@@ -75,6 +86,8 @@ export const usePages = () => {
         getPageBySlug,
         deletePage,
         patchPage,
-        pages
+        pages,
+        isLoadingPages,
+        isPatchingPage
     }
 }

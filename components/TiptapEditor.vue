@@ -113,15 +113,54 @@
       >
         <Icon name="ic:baseline-redo" size="16px" :class="{ 'text-white': editor.isActive('redo') }"/>
       </button>
+      <button type="button" @click="editor.chain().focus().insertFunctionBlock({
+          name: 'getUser',
+          params: 'id: string',
+          returnType: 'User',
+          description: 'Récupère un utilisateur par son ID.'
+        }).run()">
+        Ajouter une fonction
+      </button>
+      <button type="button" @click="editor.chain().focus().insertWarningBlock().run()">
+        Warning
+      </button>
+      <button type="button" @click="editor.chain().focus().setHorizontalRule().run()">
+        Set horizontal rule
+      </button>
     </div>
+    <bubble-menu
+        :editor="editor"
+        :tippy-options="{ duration: 100 }"
+        v-if="editor"
+    >
+      <div class="bg-white p-4 flex gap-4 border rounded-lg">
+        <button type="button" @click="editor.chain().focus().toggleBold().run()" class="flex items-center p-1 rounded" :class="{ 'bg-primary': editor.isActive('bold') }">
+          <Icon name="heroicons:bold" size="20px" :class="{ 'text-white': editor.isActive('bold') }"/>
+        </button>
+        <button type="button" @click="editor.chain().focus().toggleItalic().run()" class="flex items-center p-1 rounded" :class="{ 'bg-primary': editor.isActive('italic') }">
+          <Icon name="heroicons:italic" size="16px" :class="{ 'text-white': editor.isActive('italic') }"/>
+        </button>
+        <button type="button" @click="editor.chain().focus().toggleStrike().run()" class="flex items-center p-1 rounded" :class="{ 'bg-primary': editor.isActive('strike') }">
+          <Icon name="heroicons:strikethrough" size="16px" :class="{ 'text-white': editor.isActive('strike') }"/>
+        </button>
+      </div>
+    </bubble-menu>
     <TiptapEditorContent :editor="editor" class="border rounded p-2 min-h-screen"/>
   </div>
 </template>
 
 <script setup>
-import 'highlight.js/styles/github-dark.css';
+import { FunctionBlock } from '~/extensions/FunctionExtension.js'
+import {CustomParagraph} from "~/extensions/CustomParagraph.js";
+import {WarningBlock} from "~/extensions/WarningBlock.js";
+import HorizontalRule from '@tiptap/extension-horizontal-rule'
+import Dropcursor from '@tiptap/extension-dropcursor'
+import { BubbleMenu } from '@tiptap/vue-3'
+import {CustomCodeBlockLowlight} from "~/extensions/CustomCodeBlock.js";
+import { all, createLowlight } from 'lowlight'
 
-const lowlight = createLowlight(allLanguages)
+const lowlight = createLowlight(all)
+
 const model = defineModel()
 
 
@@ -130,8 +169,15 @@ const editor = useEditor({
   extensions: [
     TiptapStarterKit.configure({
       codeBlock: false,
+      paragraph: false
     }),
-    TiptapCodeBlockLowlight.configure({ lowlight }),
+    CustomCodeBlockLowlight.configure({ lowlight }),
+      FunctionBlock,
+      CustomParagraph,
+      WarningBlock,
+    HorizontalRule,
+    Dropcursor,
+
   ],
   onUpdate({ editor }){
     model.value = editor.getHTML()
@@ -146,97 +192,4 @@ onBeforeUnmount(() => {
 
 </script>
 
-<style>
 
-.tiptap h1 {
-  font-size: 24px;
-}
-
-.tiptap h2 {
-  font-size: 20px;
-}
-
-.tiptap h3 {
-  font-size: 18px;
-}
-
-.tiptap pre code {
-  font-family: Inter, serif !important;
-}
-.tiptap:focus {
-  outline: none;
-}
-
-.tiptap pre {
-  border-radius: 0.5rem;
-  margin: 1.5rem 0;
-  padding: 0.75rem 1rem;
-  background: #0d1117;
-}
-
-.tiptap code {
-  color: inherit;
-  font-size: 0.8rem;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-}
-
-/* Code styling */
-.tiptap pre .hljs-comment,
-.tiptap pre .hljs-quote {
-  color: #616161;
-}
-
-.tiptap pre .hljs-variable,
-.tiptap pre .hljs-template-variable,
-.tiptap pre .hljs-attribute,
-.tiptap pre .hljs-tag,
-.tiptap pre .hljs-name,
-.tiptap pre .hljs-regexp,
-.tiptap pre .hljs-link,
-.tiptap pre .hljs-selector-id,
-.tiptap pre .hljs-selector-class {
-  color: #f98181;
-}
-
-.tiptap pre .hljs-number,
-.tiptap pre .hljs-meta,
-.tiptap pre .hljs-built_in,
-.tiptap pre .hljs-builtin-name,
-.tiptap pre .hljs-literal,
-.tiptap pre .hljs-type,
-.tiptap pre .hljs-params {
-  color: #fbbc88;
-}
-
-.tiptap pre .hljs-string,
-.tiptap pre .hljs-symbol,
-.tiptap pre .hljs-bullet {
-  color: #b9f18d;
-}
-
-.tiptap pre .hljs-title,
-.tiptap pre .hljs-section {
-  color: #faf594;
-}
-
-.tiptap pre .hljs-keyword,
-.tiptap pre .hljs-selector-tag {
-  color: #70cff8;
-}
-
-.tiptap pre .hljs-emphasis {
-  font-style: italic;
-}
-
-.tiptap pre .hljs-strong {
-  font-weight: 700;
-}
-
-.tiptap li {
-  list-style-type: disc;
-  margin-left: 2rem;
-}
-
-</style>

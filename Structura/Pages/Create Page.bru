@@ -6,6 +6,14 @@ meta {
 
 post {
   url: {{baseUrl}}/api/pages
-  body: none
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "title": "test",
+    "content": "test",
+    "order": 0
+  }
 }

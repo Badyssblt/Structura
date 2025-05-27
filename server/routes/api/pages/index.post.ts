@@ -1,12 +1,9 @@
-import {usePrisma} from "~/composables/use-prisma";
-import {PrismaClient} from "~/generated/prisma";
+import { prisma } from "~/lib/prisma"
 import {useSlug} from "~/composables/useSlug";
-
-const prisma = new PrismaClient()
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
-    const { title, content, order } = body
+    const { title, content, order, categoryId } = body
 
     if (!title || !content) {
         return sendError(event, createError({
@@ -17,7 +14,22 @@ export default defineEventHandler(async (event) => {
 
     const slug = useSlug(title)
 
+    // Récupérer ou créer la catégorie "no-category" si nécessaire
+    let finalCategoryId = categoryId
 
+    if (!finalCategoryId) {
+        let noCategory = await prisma.category.findFirst({
+            where: { name: "no-category" }
+        })
+
+        if (!noCategory) {
+            noCategory = await prisma.category.create({
+                data: { name: "no-category" }
+            })
+        }
+
+        finalCategoryId = noCategory.id
+    }
 
     try {
         const newPage = await prisma.page.create({
@@ -25,7 +37,8 @@ export default defineEventHandler(async (event) => {
                 title,
                 content,
                 slug,
-                order: order ?? 0
+                order: order ?? 0,
+                categoryId: finalCategoryId
             }
         })
 

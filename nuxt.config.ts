@@ -32,3 +32,24 @@ export default defineNuxtConfig({
         componentDir: './components/ui'
     }
 })
+
+
+// export default defineNuxtConfig({
+//     vite: {
+//         optimizeDeps: {
+//             exclude: ['@prisma/client']
+//         },
+//         server: {
+//             hmr: {
+//                 overlay: false
+//             }
+//         }
+//     },
+//     nitro: {
+//         esbuild: {
+//             options: {
+//                 target: 'esnext'
+//             }
+//         }
+//     }
+// })

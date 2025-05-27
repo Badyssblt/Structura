@@ -17,3 +17,8 @@ export type Page = {
     updatedAt: Date,
     is_public: Boolean
 }
+
+export type Category = {
+    name: string,
+    pages: Page[]
+}

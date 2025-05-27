@@ -137,6 +137,11 @@ exports.Prisma.SettingScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
 exports.Prisma.PageScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -147,7 +152,7 @@ exports.Prisma.PageScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   is_public: 'is_public',
-  category: 'category'
+  categoryId: 'categoryId'
 };
 
 exports.Prisma.PageRevisionScalarFieldEnum = {
@@ -189,6 +194,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Version: 'Version',
   Setting: 'Setting',
+  Category: 'Category',
   Page: 'Page',
   PageRevision: 'PageRevision'
 };
