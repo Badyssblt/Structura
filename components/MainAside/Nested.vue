@@ -28,6 +28,8 @@
             :group="{ name: 'pages' }"
             item-key="title"
             animation="200"
+            class="flex flex-col"
+            @change="onPageMove($event, category.id)"
         >
           <template #item="{ element: page }: { element: Page }">
             <Link :to="'/admin/pages/' + page.slug">
@@ -47,6 +49,18 @@ import { Link } from '~/components/MainAside/index'
 
 const { deleteCategory } = useCategory()
 
+const onPageMove = async (event, category) => {
+  try {
+    console.log(event, category)
+    const body = {
+      categoryId: category,
+      order: event.added?.newIndex || event.moved?.newIndex || 0
+    }
+    const response = await usePages().patchPage(event.added.element.slug, body)
+  }catch (e) {
+
+  }
+}
 
 
 const props = defineProps({

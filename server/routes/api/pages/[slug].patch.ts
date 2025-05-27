@@ -21,6 +21,8 @@ export default defineEventHandler(async (event) => {
     if (content) dataToUpdate.content = content;
     if (typeof order !== "undefined") dataToUpdate.order = order;
     if (newSlug) dataToUpdate.slug = newSlug;
+    if (typeof categoryId !== "undefined") dataToUpdate.categoryId = categoryId;
+
 
     const updatedPage = await prisma.page.update({
         where: { slug },
