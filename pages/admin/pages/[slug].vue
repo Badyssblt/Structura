@@ -11,6 +11,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Loader2 } from 'lucide-vue-next'
+import type {Page} from "~/types/types";
 
 
 const route = useRoute()
@@ -21,7 +22,7 @@ definePageMeta({
 
 const slug: string = route.params.slug
 
-const page = await usePages().getPageBySlug(slug)
+const page: Page = await usePages().getPageBySlug(slug)
 
 const { isLoadingPages, isPatchingPage } = usePages()
 

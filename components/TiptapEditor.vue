@@ -91,12 +91,18 @@
       >
         <Icon name="heroicons:numbered-list" size="16px" :class="{ 'text-white': editor.isActive('orderedlist') }"/>
       </button>
+      <button @click="setLink" :class="{ 'is-active': editor.isActive('link') }">
+        <Icon name="material-symbols:link" size="16px"/>
+      </button>
+      <button @click="editor.chain().focus().unsetLink().run()" :disabled="!editor.isActive('link')">
+        <Icon name="ion:unlink" size="16px"/>
+      </button>
       <button
           @click="editor.chain().focus().toggleCodeBlock().run()"
           :class="{ 'bg-primary': editor.isActive('codeblock') }"
           class="flex items-center p-1 rounded"
       >
-        code block
+        <Icon name="material-symbols:code-rounded" size="16px" />
       </button>
       <button
           @click="editor.chain().focus().undo().run()"
@@ -119,14 +125,15 @@
           returnType: 'User',
           description: 'Récupère un utilisateur par son ID.'
         }).run()">
-        Ajouter une fonction
+        <Icon name="hugeicons:function" size="16px"/>
       </button>
       <button type="button" @click="editor.chain().focus().insertWarningBlock().run()">
-        Warning
+        <Icon name="material-symbols:warning-rounded" size="16px"/>
       </button>
       <button type="button" @click="editor.chain().focus().setHorizontalRule().run()">
-        Set horizontal rule
+        <Icon name="material-symbols:horizontal-rule-rounded" size="16px"/>
       </button>
+
     </div>
     <bubble-menu
         :editor="editor"
@@ -143,6 +150,12 @@
         <button type="button" @click="editor.chain().focus().toggleStrike().run()" class="flex items-center p-1 rounded" :class="{ 'bg-primary': editor.isActive('strike') }">
           <Icon name="heroicons:strikethrough" size="16px" :class="{ 'text-white': editor.isActive('strike') }"/>
         </button>
+        <button @click="setLink" :class="{ 'is-active': editor.isActive('link') }">
+          <Icon name="material-symbols:link" size="16px"/>
+        </button>
+        <button @click="editor.chain().focus().unsetLink().run()" :disabled="!editor.isActive('link')">
+          <Icon name="ion:unlink" size="16px"/>
+        </button>
       </div>
     </bubble-menu>
     <TiptapEditorContent :editor="editor" class="border rounded p-2 min-h-screen"/>
@@ -158,6 +171,7 @@ import Dropcursor from '@tiptap/extension-dropcursor'
 import { BubbleMenu } from '@tiptap/vue-3'
 import {CustomCodeBlockLowlight} from "~/extensions/CustomCodeBlock.js";
 import { all, createLowlight } from 'lowlight'
+import Link from '@tiptap/extension-link'
 
 const lowlight = createLowlight(all)
 
@@ -176,13 +190,53 @@ const editor = useEditor({
       CustomParagraph,
       WarningBlock,
     HorizontalRule,
+    Link.configure({
+      openOnClick: false,
+      defaultProtocol: 'https',
+    }),
     Dropcursor,
-
   ],
+  editorProps: {
+    attributes: {
+      class: 'prose prose-sm sm:prose-base max-w-none focus:outline-none',
+    },
+  },
   onUpdate({ editor }){
     model.value = editor.getHTML()
   }
 });
+
+
+const setLink = () =>  {
+  const previousUrl = editor.value.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
+
+  // cancelled
+  if (url === null) {
+    return
+  }
+
+  // empty
+  if (url === '') {
+    editor.value
+        .chain()
+        .focus()
+        .extendMarkRange('link')
+        .unsetLink()
+        .run()
+
+    return
+  }
+
+  // update link
+  editor.value
+      .chain()
+      .focus()
+      .extendMarkRange('link')
+      .setLink({ href: url })
+      .run()
+}
+
 
 onBeforeUnmount(() => {
   unref(editor).destroy();

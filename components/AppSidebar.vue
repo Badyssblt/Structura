@@ -28,7 +28,7 @@ const data = {
       items: [
         {
           title: 'Informations',
-          url: '/admin',
+          url: '/admin/informations',
         },
         {
           title: 'Pages',

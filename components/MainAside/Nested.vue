@@ -5,6 +5,7 @@
       :list="sortedCategories"
       :group="{ name: 'categories' }"
       item-key="name"
+      v-if="admin"
   >
     <template #item="{ element: category }">
       <li>
@@ -40,6 +41,27 @@
       </li>
     </template>
   </draggable>
+  <div v-else>
+    <ul class="flex flex-col ">
+      <li v-for="category in sortedCategories">
+        <div class="flex items-center justify-between" v-if="category.name !== 'no-category'">
+          <p class="text-sm font-medium" >{{ category.name }}</p>
+        </div>
+
+        <div
+            :class="category.name !== 'no-category' ? 'pl-6' : ''"
+            class="flex flex-col"
+            @change="onPageMove($event, category.id)"
+        >
+          <div v-for="page in category.pages">
+            <Link :to="admin ? '/admin/pages/' + page.slug : '/' + page.slug">
+              {{ page.title }}
+            </Link>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -49,36 +71,52 @@ import { Link } from '~/components/MainAside/index'
 
 const { deleteCategory } = useCategory()
 
-const onPageMove = async (event, category) => {
-  try {
-    console.log(event, category)
-    const body = {
-      categoryId: category,
-      order: event.added?.newIndex || event.moved?.newIndex || 0
-    }
-    const response = await usePages().patchPage(event.added.element.slug, body)
-  }catch (e) {
-
-  }
-}
-
-
 const props = defineProps({
   categories: {
     type: Array,
     required: false
+  },
+  admin: {
+    type: Boolean,
+    required: true,
+    default: false
   }
 })
 
 
-const sortedCategories = computed(() => {
-  if (!props.categories) return [];
-  return [...props.categories].sort((a, b) => {
-    if (a.name === 'no-category') return 1;
-    if (b.name === 'no-category') return -1;
-    return 0;
-  });
+const onPageMove = async (event, categoryId) => {
+  try {
+    const body = {
+      categoryId,
+      order: event.added?.newIndex ?? event.moved?.newIndex ?? 0
+    };
+    const slug = event.added?.element.slug ?? event.moved?.element.slug;
+    if (!slug) return;
+
+    await usePages().patchPage(slug, body);
+
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const sortedCategories = ref<CategoryWithPages[]>([]);
+
+onMounted(() => {
+  sortedCategories.value = [...props.categories]
+      .map(category => ({
+        ...category,
+        pages: [...category.pages].sort((a, b) => a.order - b.order)
+      }))
+      .sort((a, b) => {
+        if (a.name === 'no-category') return 1;
+        if (b.name === 'no-category') return -1;
+        return 0;
+      });
 });
+
+
+
 
 </script>
 

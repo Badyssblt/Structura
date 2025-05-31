@@ -39,8 +39,8 @@ function handleSelect(action: string) {
 <template>
   <div class="relative" @contextmenu="openContextMenu">
     <div  class="flex flex-col gap-4 p-4">
-      <NuxtLink to="/admin/pages">Créer une page</NuxtLink>
-      <Nested :categories="categories" class="flex flex-col"/>
+      <NuxtLink to="/admin/pages" class="bg-primary text-primary-foreground px-2 py-1 rounded-md font-medium" v-if="admin">Créer une page</NuxtLink>
+      <Nested :categories="categories" class="flex flex-col" :admin="admin"/>
     </div>
 
     <!-- 🔗 Menu contextuel séparé -->
