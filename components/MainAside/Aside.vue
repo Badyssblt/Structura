@@ -8,6 +8,8 @@ await getAllPages()
 const { categories, getAllCategories, deleteCategory } = useCategory()
 await getAllCategories()
 
+
+
 const props = withDefaults(defineProps<{
   admin?: boolean
 }>(), {

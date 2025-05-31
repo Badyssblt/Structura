@@ -1,3 +1,59 @@
+<script setup lang="ts">
+import draggable from "vuedraggable";
+import type {Page} from "~/types/types";
+import { Link } from '~/components/MainAside/index'
+
+const { deleteCategory } = useCategory()
+
+const route = useRoute()
+const slug = computed(() => route.params.slug)
+
+const props = defineProps({
+  categories: {
+    type: Array,
+    required: false
+  },
+  admin: {
+    type: Boolean,
+    required: true,
+    default: false
+  }
+})
+
+
+const onPageMove = async (event, categoryId) => {
+  try {
+    const body = {
+      categoryId,
+      order: event.added?.newIndex ?? event.moved?.newIndex ?? 0
+    };
+    const slug = event.added?.element.slug ?? event.moved?.element.slug;
+    if (!slug) return;
+
+    await usePages().patchPage(slug, body);
+
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const sortedCategories = ref<CategoryWithPages[]>([]);
+
+onMounted(() => {
+  sortedCategories.value = [...props.categories]
+      .map(category => ({
+        ...category,
+        pages: [...category.pages].sort((a, b) => a.order - b.order)
+      }))
+      .sort((a, b) => {
+        if (a.name === 'no-category') return 1;
+        if (b.name === 'no-category') return -1;
+        return 0;
+      });
+});
+
+</script>
+
 <template>
   <draggable
       class="dragArea"
@@ -54,7 +110,7 @@
             @change="onPageMove($event, category.id)"
         >
           <div v-for="page in category.pages">
-            <Link :to="admin ? '/admin/pages/' + page.slug : '/' + page.slug">
+            <Link :to="admin ? '/admin/pages/' + page.slug : '/' + page.slug" :class="page.slug === slug ? 'text-primary font-medium' : ''">
               {{ page.title }}
             </Link>
           </div>
@@ -64,60 +120,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import draggable from "vuedraggable";
-import type {Page} from "~/types/types";
-import { Link } from '~/components/MainAside/index'
 
-const { deleteCategory } = useCategory()
-
-const props = defineProps({
-  categories: {
-    type: Array,
-    required: false
-  },
-  admin: {
-    type: Boolean,
-    required: true,
-    default: false
-  }
-})
-
-
-const onPageMove = async (event, categoryId) => {
-  try {
-    const body = {
-      categoryId,
-      order: event.added?.newIndex ?? event.moved?.newIndex ?? 0
-    };
-    const slug = event.added?.element.slug ?? event.moved?.element.slug;
-    if (!slug) return;
-
-    await usePages().patchPage(slug, body);
-
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-const sortedCategories = ref<CategoryWithPages[]>([]);
-
-onMounted(() => {
-  sortedCategories.value = [...props.categories]
-      .map(category => ({
-        ...category,
-        pages: [...category.pages].sort((a, b) => a.order - b.order)
-      }))
-      .sort((a, b) => {
-        if (a.name === 'no-category') return 1;
-        if (b.name === 'no-category') return -1;
-        return 0;
-      });
-});
-
-
-
-
-</script>
 
 
