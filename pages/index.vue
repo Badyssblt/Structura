@@ -9,7 +9,7 @@ definePageMeta({
 </script>
 
 <template>
-<div v-html="page?.content">
+<div class="prose prose-sm sm:prose-base max-w-none" v-html="page?.content">
 
 </div>
 </template>
