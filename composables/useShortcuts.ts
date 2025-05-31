@@ -5,8 +5,34 @@ type Shortcut = {
 
 const normalizeKey = (key: string) => key.toLowerCase()
 
-export function useShortcuts(shortcuts: Shortcut[]){
+
+
+export function useShortcuts(){
+    const router = useRouter()
+
+
+    const shortcuts: Shortcut[] = [
+        {
+            keys: ['shift', 'e'],
+            handler: () => router.push('/admin')
+        },
+        {
+            keys: ['shift', 'p'],
+            handler: () => router.push('/admin/informations')
+        }
+    ]
     const handleKeydown = (e: KeyboardEvent) => {
+        const target = e.target as HTMLElement
+
+        // Ne pas exécuter les raccourcis si on tape dans un champ texte
+        const isTyping = (
+            target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.isContentEditable
+        )
+
+        if (isTyping) return
+
         const pressedKeys = new Set<string>()
 
         if (e.ctrlKey) pressedKeys.add('ctrl')
@@ -25,6 +51,7 @@ export function useShortcuts(shortcuts: Shortcut[]){
             }
         }
     }
+
 
     onMounted(() => {
         window.addEventListener('keydown', handleKeydown)

@@ -172,6 +172,7 @@ import { BubbleMenu } from '@tiptap/vue-3'
 import {CustomCodeBlockLowlight} from "~/extensions/CustomCodeBlock.js";
 import { all, createLowlight } from 'lowlight'
 import Link from '@tiptap/extension-link'
+import {CustomHeading} from "~/extensions/CustomHeading.js";
 
 const lowlight = createLowlight(all)
 
@@ -183,8 +184,10 @@ const editor = useEditor({
   extensions: [
     TiptapStarterKit.configure({
       codeBlock: false,
-      paragraph: false
+      paragraph: false,
+      heading: false
     }),
+      CustomHeading,
     CustomCodeBlockLowlight.configure({ lowlight }),
       FunctionBlock,
       CustomParagraph,

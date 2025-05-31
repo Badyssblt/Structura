@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import {Aside} from "~/components/MainAside";
+import {LinkAside} from "~/components/MainAside";
 
 const route = useRoute()
 
 const isAdminRoute = computed(() => route.path.startsWith('/admin'))
 
 const isAdmin = ref(true)
+
+const linkAside = await useSettings().getOne("linkaside") ?? false
+
+const sharedContent = useState<string>('shared-content')
 
 </script>
 
@@ -16,6 +21,9 @@ const isAdmin = ref(true)
     <Aside class="w-72 border-r" v-bind="{ admin: isAdminRoute }"/>
     <div class="p-2 w-full">
       <slot/>
+    </div>
+    <div class="w-72 border-l p-4 sticky top-0 h-screen bg-background" v-if="linkAside.value">
+      <LinkAside :html="sharedContent"/>
     </div>
   </div>
 </div>

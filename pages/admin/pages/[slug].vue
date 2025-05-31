@@ -27,6 +27,11 @@ const page: Page = await usePages().getPageBySlug(slug)
 const { isLoadingPages, isPatchingPage } = usePages()
 
 const content = ref(page.content)
+const sharedContent = useState<string>('shared-content')
+sharedContent.value = content.value
+watch(content, (val) => {
+  sharedContent.value = val
+})
 
 const emits = defineEmits(['getPages'])
 

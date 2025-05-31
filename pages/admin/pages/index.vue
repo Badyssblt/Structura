@@ -9,6 +9,10 @@ const titleRef = ref(null)
 const title = ref()
 
 const content = ref("");
+const sharedContent = useState<string>('shared-content')
+watch(content, (newContent) => {
+  sharedContent.value = newContent
+})
 
 const handleName = () => {
   title.value = titleRef.value.innerText

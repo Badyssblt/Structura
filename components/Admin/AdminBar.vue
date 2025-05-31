@@ -29,7 +29,7 @@ await getSettings()
             <DropdownMenuShortcut>⇧⌘E</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <span>Paramètres</span>
+            <NuxtLink to="/admin/parameters">Paramètres</NuxtLink>
             <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
