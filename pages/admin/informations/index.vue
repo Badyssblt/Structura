@@ -8,13 +8,6 @@ await getSettings()
 const name = ref<string>(settings.value?.name?.value || '')
 const description = ref<string>(settings.value?.description?.value || '')
 
-// Synchroniser les refs avec les settings quand ils changent
-watch(settings, (newSettings) => {
-  if (newSettings) {
-    name.value = newSettings.name?.value || ''
-    description.value = newSettings.description?.value || ''
-  }
-}, { deep: true, immediate: true })
 
 definePageMeta({
   layout: 'admin'

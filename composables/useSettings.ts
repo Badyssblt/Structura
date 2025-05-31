@@ -1,7 +1,8 @@
 import type { Settings } from '~/types/types'
 
-export const useSettings = async () => {
+export const useSettings = () => {
     const settings = useState<Settings | null>('settings', () => null)
+
 
     const getSettings = async () => {
         const data = await $fetch<Settings>('/api/settings')
@@ -9,6 +10,18 @@ export const useSettings = async () => {
             settings.value = data
         }
         return settings.value
+    }
+
+    const getOne = async(key: string) => {
+        try {
+            const data = await $fetch("/api/settings/" + key)
+            if(data){
+                return data
+            }
+            return null
+        }catch (e) {
+
+        }
     }
 
     const updateSettings = async (newSettings: Partial<Settings>) => {
@@ -32,6 +45,7 @@ export const useSettings = async () => {
     return {
         getSettings,
         updateSettings,
-        settings: readonly(settings) // Empêche la mutation directe
+        settings: readonly(settings),
+        getOne
     }
 }

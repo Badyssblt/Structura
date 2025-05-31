@@ -34,6 +34,10 @@ const data = {
           title: 'Pages',
           url: '/admin/pages',
         },
+        {
+          title: "Paramètres",
+          url: "/admin/parameters"
+        }
       ],
     }
   ],

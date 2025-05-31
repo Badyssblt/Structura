@@ -9,7 +9,6 @@ export default defineEventHandler(async () => {
         try {
             acc[setting.key] = JSON.parse(setting.value);
         } catch (e) {
-            console.warn(`Valeur non parsable pour "${setting.key}":`, setting.value);
             acc[setting.key] = setting.value; // fallback brut
         }
         return acc;
