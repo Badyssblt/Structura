@@ -24,25 +24,20 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Version = $Result.DefaultSelection<Prisma.$VersionPayload>
 /**
- * Model Setting
- * 
- */
-export type Setting = $Result.DefaultSelection<Prisma.$SettingPayload>
-/**
  * Model Category
  * 
  */
 export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
 /**
+ * Model Setting
+ * 
+ */
+export type Setting = $Result.DefaultSelection<Prisma.$SettingPayload>
+/**
  * Model Page
  * 
  */
 export type Page = $Result.DefaultSelection<Prisma.$PagePayload>
-/**
- * Model PageRevision
- * 
- */
-export type PageRevision = $Result.DefaultSelection<Prisma.$PageRevisionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -190,16 +185,6 @@ export class PrismaClient<
   get version(): Prisma.VersionDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.setting`: Exposes CRUD operations for the **Setting** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Settings
-    * const settings = await prisma.setting.findMany()
-    * ```
-    */
-  get setting(): Prisma.SettingDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
     * Example usage:
     * ```ts
@@ -210,6 +195,16 @@ export class PrismaClient<
   get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.setting`: Exposes CRUD operations for the **Setting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Settings
+    * const settings = await prisma.setting.findMany()
+    * ```
+    */
+  get setting(): Prisma.SettingDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.page`: Exposes CRUD operations for the **Page** model.
     * Example usage:
     * ```ts
@@ -218,16 +213,6 @@ export class PrismaClient<
     * ```
     */
   get page(): Prisma.PageDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.pageRevision`: Exposes CRUD operations for the **PageRevision** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PageRevisions
-    * const pageRevisions = await prisma.pageRevision.findMany()
-    * ```
-    */
-  get pageRevision(): Prisma.PageRevisionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -670,10 +655,9 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Version: 'Version',
-    Setting: 'Setting',
     Category: 'Category',
-    Page: 'Page',
-    PageRevision: 'PageRevision'
+    Setting: 'Setting',
+    Page: 'Page'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -692,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "version" | "setting" | "category" | "page" | "pageRevision"
+      modelProps: "user" | "version" | "category" | "setting" | "page"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -844,80 +828,6 @@ export namespace Prisma {
           }
         }
       }
-      Setting: {
-        payload: Prisma.$SettingPayload<ExtArgs>
-        fields: Prisma.SettingFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.SettingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.SettingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
-          }
-          findFirst: {
-            args: Prisma.SettingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.SettingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
-          }
-          findMany: {
-            args: Prisma.SettingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>[]
-          }
-          create: {
-            args: Prisma.SettingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
-          }
-          createMany: {
-            args: Prisma.SettingCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.SettingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>[]
-          }
-          delete: {
-            args: Prisma.SettingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
-          }
-          update: {
-            args: Prisma.SettingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
-          }
-          deleteMany: {
-            args: Prisma.SettingDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.SettingUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SettingUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>[]
-          }
-          upsert: {
-            args: Prisma.SettingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
-          }
-          aggregate: {
-            args: Prisma.SettingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSetting>
-          }
-          groupBy: {
-            args: Prisma.SettingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SettingGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.SettingCountArgs<ExtArgs>
-            result: $Utils.Optional<SettingCountAggregateOutputType> | number
-          }
-        }
-      }
       Category: {
         payload: Prisma.$CategoryPayload<ExtArgs>
         fields: Prisma.CategoryFieldRefs
@@ -992,6 +902,80 @@ export namespace Prisma {
           }
         }
       }
+      Setting: {
+        payload: Prisma.$SettingPayload<ExtArgs>
+        fields: Prisma.SettingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SettingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SettingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
+          }
+          findFirst: {
+            args: Prisma.SettingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SettingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
+          }
+          findMany: {
+            args: Prisma.SettingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>[]
+          }
+          create: {
+            args: Prisma.SettingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
+          }
+          createMany: {
+            args: Prisma.SettingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SettingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>[]
+          }
+          delete: {
+            args: Prisma.SettingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
+          }
+          update: {
+            args: Prisma.SettingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
+          }
+          deleteMany: {
+            args: Prisma.SettingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SettingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SettingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>[]
+          }
+          upsert: {
+            args: Prisma.SettingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SettingPayload>
+          }
+          aggregate: {
+            args: Prisma.SettingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSetting>
+          }
+          groupBy: {
+            args: Prisma.SettingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SettingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SettingCountArgs<ExtArgs>
+            result: $Utils.Optional<SettingCountAggregateOutputType> | number
+          }
+        }
+      }
       Page: {
         payload: Prisma.$PagePayload<ExtArgs>
         fields: Prisma.PageFieldRefs
@@ -1063,80 +1047,6 @@ export namespace Prisma {
           count: {
             args: Prisma.PageCountArgs<ExtArgs>
             result: $Utils.Optional<PageCountAggregateOutputType> | number
-          }
-        }
-      }
-      PageRevision: {
-        payload: Prisma.$PageRevisionPayload<ExtArgs>
-        fields: Prisma.PageRevisionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PageRevisionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PageRevisionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>
-          }
-          findFirst: {
-            args: Prisma.PageRevisionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PageRevisionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>
-          }
-          findMany: {
-            args: Prisma.PageRevisionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>[]
-          }
-          create: {
-            args: Prisma.PageRevisionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>
-          }
-          createMany: {
-            args: Prisma.PageRevisionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PageRevisionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>[]
-          }
-          delete: {
-            args: Prisma.PageRevisionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>
-          }
-          update: {
-            args: Prisma.PageRevisionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>
-          }
-          deleteMany: {
-            args: Prisma.PageRevisionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PageRevisionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PageRevisionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>[]
-          }
-          upsert: {
-            args: Prisma.PageRevisionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PageRevisionPayload>
-          }
-          aggregate: {
-            args: Prisma.PageRevisionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePageRevision>
-          }
-          groupBy: {
-            args: Prisma.PageRevisionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PageRevisionGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PageRevisionCountArgs<ExtArgs>
-            result: $Utils.Optional<PageRevisionCountAggregateOutputType> | number
           }
         }
       }
@@ -1226,10 +1136,9 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     version?: VersionOmit
-    setting?: SettingOmit
     category?: CategoryOmit
+    setting?: SettingOmit
     page?: PageOmit
-    pageRevision?: PageRevisionOmit
   }
 
   /* Types for Logging */
@@ -1320,6 +1229,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type VersionCountOutputType
+   */
+
+  export type VersionCountOutputType = {
+    categories: number
+  }
+
+  export type VersionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    categories?: boolean | VersionCountOutputTypeCountCategoriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VersionCountOutputType without action
+   */
+  export type VersionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionCountOutputType
+     */
+    select?: VersionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VersionCountOutputType without action
+   */
+  export type VersionCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+  }
+
+
+  /**
    * Count Type CategoryCountOutputType
    */
 
@@ -1356,12 +1296,10 @@ export namespace Prisma {
 
   export type PageCountOutputType = {
     subPages: number
-    revisions: number
   }
 
   export type PageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subPages?: boolean | PageCountOutputTypeCountSubPagesArgs
-    revisions?: boolean | PageCountOutputTypeCountRevisionsArgs
   }
 
   // Custom InputTypes
@@ -1380,13 +1318,6 @@ export namespace Prisma {
    */
   export type PageCountOutputTypeCountSubPagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PageWhereInput
-  }
-
-  /**
-   * PageCountOutputType without action
-   */
-  export type PageCountOutputTypeCountRevisionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PageRevisionWhereInput
   }
 
 
@@ -2432,18 +2363,21 @@ export namespace Prisma {
     id: number | null
     name: string | null
     createdAt: Date | null
+    isCurrent: boolean | null
   }
 
   export type VersionMaxAggregateOutputType = {
     id: number | null
     name: string | null
     createdAt: Date | null
+    isCurrent: boolean | null
   }
 
   export type VersionCountAggregateOutputType = {
     id: number
     name: number
     createdAt: number
+    isCurrent: number
     _all: number
   }
 
@@ -2460,18 +2394,21 @@ export namespace Prisma {
     id?: true
     name?: true
     createdAt?: true
+    isCurrent?: true
   }
 
   export type VersionMaxAggregateInputType = {
     id?: true
     name?: true
     createdAt?: true
+    isCurrent?: true
   }
 
   export type VersionCountAggregateInputType = {
     id?: true
     name?: true
     createdAt?: true
+    isCurrent?: true
     _all?: true
   }
 
@@ -2565,6 +2502,7 @@ export namespace Prisma {
     id: number
     name: string
     createdAt: Date
+    isCurrent: boolean
     _count: VersionCountAggregateOutputType | null
     _avg: VersionAvgAggregateOutputType | null
     _sum: VersionSumAggregateOutputType | null
@@ -2590,35 +2528,50 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     createdAt?: boolean
+    isCurrent?: boolean
+    categories?: boolean | Version$categoriesArgs<ExtArgs>
+    _count?: boolean | VersionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["version"]>
 
   export type VersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     createdAt?: boolean
+    isCurrent?: boolean
   }, ExtArgs["result"]["version"]>
 
   export type VersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     createdAt?: boolean
+    isCurrent?: boolean
   }, ExtArgs["result"]["version"]>
 
   export type VersionSelectScalar = {
     id?: boolean
     name?: boolean
     createdAt?: boolean
+    isCurrent?: boolean
   }
 
-  export type VersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["version"]>
+  export type VersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "isCurrent", ExtArgs["result"]["version"]>
+  export type VersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    categories?: boolean | Version$categoriesArgs<ExtArgs>
+    _count?: boolean | VersionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type VersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type VersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $VersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Version"
-    objects: {}
+    objects: {
+      categories: Prisma.$CategoryPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       createdAt: Date
+      isCurrent: boolean
     }, ExtArgs["result"]["version"]>
     composites: {}
   }
@@ -3013,6 +2966,7 @@ export namespace Prisma {
    */
   export interface Prisma__VersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    categories<T extends Version$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Version$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3045,6 +2999,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Version", 'Int'>
     readonly name: FieldRef<"Version", 'String'>
     readonly createdAt: FieldRef<"Version", 'DateTime'>
+    readonly isCurrent: FieldRef<"Version", 'Boolean'>
   }
     
 
@@ -3061,6 +3016,10 @@ export namespace Prisma {
      * Omit specific fields from the Version
      */
     omit?: VersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
     /**
      * Filter, which Version to fetch.
      */
@@ -3080,6 +3039,10 @@ export namespace Prisma {
      */
     omit?: VersionOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+    /**
      * Filter, which Version to fetch.
      */
     where: VersionWhereUniqueInput
@@ -3097,6 +3060,10 @@ export namespace Prisma {
      * Omit specific fields from the Version
      */
     omit?: VersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
     /**
      * Filter, which Version to fetch.
      */
@@ -3146,6 +3113,10 @@ export namespace Prisma {
      */
     omit?: VersionOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+    /**
      * Filter, which Version to fetch.
      */
     where?: VersionWhereInput
@@ -3194,6 +3165,10 @@ export namespace Prisma {
      */
     omit?: VersionOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+    /**
      * Filter, which Versions to fetch.
      */
     where?: VersionWhereInput
@@ -3236,6 +3211,10 @@ export namespace Prisma {
      * Omit specific fields from the Version
      */
     omit?: VersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
     /**
      * The data needed to create a Version.
      */
@@ -3282,6 +3261,10 @@ export namespace Prisma {
      * Omit specific fields from the Version
      */
     omit?: VersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
     /**
      * The data needed to update a Version.
      */
@@ -3349,6 +3332,10 @@ export namespace Prisma {
      */
     omit?: VersionOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+    /**
      * The filter to search for the Version to update in case it exists.
      */
     where: VersionWhereUniqueInput
@@ -3375,6 +3362,10 @@ export namespace Prisma {
      */
     omit?: VersionOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+    /**
      * Filter which Version to delete.
      */
     where: VersionWhereUniqueInput
@@ -3395,6 +3386,30 @@ export namespace Prisma {
   }
 
   /**
+   * Version.categories
+   */
+  export type Version$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
    * Version without action
    */
   export type VersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3406,6 +3421,1123 @@ export namespace Prisma {
      * Omit specific fields from the Version
      */
     omit?: VersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Category
+   */
+
+  export type AggregateCategory = {
+    _count: CategoryCountAggregateOutputType | null
+    _avg: CategoryAvgAggregateOutputType | null
+    _sum: CategorySumAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  export type CategoryAvgAggregateOutputType = {
+    versionId: number | null
+  }
+
+  export type CategorySumAggregateOutputType = {
+    versionId: number | null
+  }
+
+  export type CategoryMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    versionId: number | null
+  }
+
+  export type CategoryMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    versionId: number | null
+  }
+
+  export type CategoryCountAggregateOutputType = {
+    id: number
+    name: number
+    versionId: number
+    _all: number
+  }
+
+
+  export type CategoryAvgAggregateInputType = {
+    versionId?: true
+  }
+
+  export type CategorySumAggregateInputType = {
+    versionId?: true
+  }
+
+  export type CategoryMinAggregateInputType = {
+    id?: true
+    name?: true
+    versionId?: true
+  }
+
+  export type CategoryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    versionId?: true
+  }
+
+  export type CategoryCountAggregateInputType = {
+    id?: true
+    name?: true
+    versionId?: true
+    _all?: true
+  }
+
+  export type CategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Category to aggregate.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categories
+    **/
+    _count?: true | CategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CategoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CategorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategory[P]>
+      : GetScalarType<T[P], AggregateCategory[P]>
+  }
+
+
+
+
+  export type CategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithAggregationInput | CategoryOrderByWithAggregationInput[]
+    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum
+    having?: CategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoryCountAggregateInputType | true
+    _avg?: CategoryAvgAggregateInputType
+    _sum?: CategorySumAggregateInputType
+    _min?: CategoryMinAggregateInputType
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type CategoryGroupByOutputType = {
+    id: string
+    name: string
+    versionId: number | null
+    _count: CategoryCountAggregateOutputType | null
+    _avg: CategoryAvgAggregateOutputType | null
+    _sum: CategorySumAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    versionId?: boolean
+    pages?: boolean | Category$pagesArgs<ExtArgs>
+    version?: boolean | Category$versionArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    versionId?: boolean
+    version?: boolean | Category$versionArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    versionId?: boolean
+    version?: boolean | Category$versionArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectScalar = {
+    id?: boolean
+    name?: boolean
+    versionId?: boolean
+  }
+
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "versionId", ExtArgs["result"]["category"]>
+  export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pages?: boolean | Category$pagesArgs<ExtArgs>
+    version?: boolean | Category$versionArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    version?: boolean | Category$versionArgs<ExtArgs>
+  }
+  export type CategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    version?: boolean | Category$versionArgs<ExtArgs>
+  }
+
+  export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Category"
+    objects: {
+      pages: Prisma.$PagePayload<ExtArgs>[]
+      version: Prisma.$VersionPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      versionId: number | null
+    }, ExtArgs["result"]["category"]>
+    composites: {}
+  }
+
+  type CategoryGetPayload<S extends boolean | null | undefined | CategoryDefaultArgs> = $Result.GetResult<Prisma.$CategoryPayload, S>
+
+  type CategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CategoryCountAggregateInputType | true
+    }
+
+  export interface CategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Category'], meta: { name: 'Category' } }
+    /**
+     * Find zero or one Category that matches the filter.
+     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CategoryFindUniqueArgs>(args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CategoryFindFirstArgs>(args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categories
+     * const categories = await prisma.category.findMany()
+     * 
+     * // Get first 10 Categories
+     * const categories = await prisma.category.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CategoryFindManyArgs>(args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Category.
+     * @param {CategoryCreateArgs} args - Arguments to create a Category.
+     * @example
+     * // Create one Category
+     * const Category = await prisma.category.create({
+     *   data: {
+     *     // ... data to create a Category
+     *   }
+     * })
+     * 
+     */
+    create<T extends CategoryCreateArgs>(args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Categories.
+     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CategoryCreateManyArgs>(args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Categories and returns the data saved in the database.
+     * @param {CategoryCreateManyAndReturnArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, CategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Category.
+     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
+     * @example
+     * // Delete one Category
+     * const Category = await prisma.category.delete({
+     *   where: {
+     *     // ... filter to delete one Category
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CategoryDeleteArgs>(args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Category.
+     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
+     * @example
+     * // Update one Category
+     * const category = await prisma.category.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CategoryUpdateArgs>(args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Categories.
+     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
+     * @example
+     * // Delete a few Categories
+     * const { count } = await prisma.category.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CategoryDeleteManyArgs>(args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CategoryUpdateManyArgs>(args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories and returns the data updated in the database.
+     * @param {CategoryUpdateManyAndReturnArgs} args - Arguments to update many Categories.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, CategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Category.
+     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
+     * @example
+     * // Update or create a Category
+     * const category = await prisma.category.upsert({
+     *   create: {
+     *     // ... data to create a Category
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Category we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CategoryUpsertArgs>(args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
+     * @example
+     * // Count the number of Categories
+     * const count = await prisma.category.count({
+     *   where: {
+     *     // ... the filter for the Categories we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoryCountArgs>(
+      args?: Subset<T, CategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoryAggregateArgs>(args: Subset<T, CategoryAggregateArgs>): Prisma.PrismaPromise<GetCategoryAggregateType<T>>
+
+    /**
+     * Group by Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoryGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Category model
+   */
+  readonly fields: CategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Category.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    pages<T extends Category$pagesArgs<ExtArgs> = {}>(args?: Subset<T, Category$pagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    version<T extends Category$versionArgs<ExtArgs> = {}>(args?: Subset<T, Category$versionArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Category model
+   */
+  interface CategoryFieldRefs {
+    readonly id: FieldRef<"Category", 'String'>
+    readonly name: FieldRef<"Category", 'String'>
+    readonly versionId: FieldRef<"Category", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Category findUnique
+   */
+  export type CategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findUniqueOrThrow
+   */
+  export type CategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findFirst
+   */
+  export type CategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findFirstOrThrow
+   */
+  export type CategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findMany
+   */
+  export type CategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Categories to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category create
+   */
+  export type CategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Category.
+     */
+    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+  }
+
+  /**
+   * Category createMany
+   */
+  export type CategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+  }
+
+  /**
+   * Category createManyAndReturn
+   */
+  export type CategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Category update
+   */
+  export type CategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Category.
+     */
+    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+    /**
+     * Choose, which Category to update.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category updateMany
+   */
+  export type CategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category updateManyAndReturn
+   */
+  export type CategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Category upsert
+   */
+  export type CategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Category to update in case it exists.
+     */
+    where: CategoryWhereUniqueInput
+    /**
+     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
+     */
+    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+    /**
+     * In case the Category was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Category delete
+   */
+  export type CategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter which Category to delete.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category deleteMany
+   */
+  export type CategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categories to delete
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category.pages
+   */
+  export type Category$pagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Page
+     */
+    select?: PageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Page
+     */
+    omit?: PageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PageInclude<ExtArgs> | null
+    where?: PageWhereInput
+    orderBy?: PageOrderByWithRelationInput | PageOrderByWithRelationInput[]
+    cursor?: PageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PageScalarFieldEnum | PageScalarFieldEnum[]
+  }
+
+  /**
+   * Category.version
+   */
+  export type Category$versionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Version
+     */
+    select?: VersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Version
+     */
+    omit?: VersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionInclude<ExtArgs> | null
+    where?: VersionWhereInput
+  }
+
+  /**
+   * Category without action
+   */
+  export type CategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
   }
 
 
@@ -4386,1035 +5518,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Category
-   */
-
-  export type AggregateCategory = {
-    _count: CategoryCountAggregateOutputType | null
-    _min: CategoryMinAggregateOutputType | null
-    _max: CategoryMaxAggregateOutputType | null
-  }
-
-  export type CategoryMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-  }
-
-  export type CategoryMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-  }
-
-  export type CategoryCountAggregateOutputType = {
-    id: number
-    name: number
-    _all: number
-  }
-
-
-  export type CategoryMinAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type CategoryMaxAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type CategoryCountAggregateInputType = {
-    id?: true
-    name?: true
-    _all?: true
-  }
-
-  export type CategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Category to aggregate.
-     */
-    where?: CategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Categories to fetch.
-     */
-    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Categories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Categories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Categories
-    **/
-    _count?: true | CategoryCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CategoryMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CategoryMaxAggregateInputType
-  }
-
-  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
-        [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCategory[P]>
-      : GetScalarType<T[P], AggregateCategory[P]>
-  }
-
-
-
-
-  export type CategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoryWhereInput
-    orderBy?: CategoryOrderByWithAggregationInput | CategoryOrderByWithAggregationInput[]
-    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum
-    having?: CategoryScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CategoryCountAggregateInputType | true
-    _min?: CategoryMinAggregateInputType
-    _max?: CategoryMaxAggregateInputType
-  }
-
-  export type CategoryGroupByOutputType = {
-    id: string
-    name: string
-    _count: CategoryCountAggregateOutputType | null
-    _min: CategoryMinAggregateOutputType | null
-    _max: CategoryMaxAggregateOutputType | null
-  }
-
-  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CategoryGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CategoryGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
-            : GetScalarType<T[P], CategoryGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    pages?: boolean | Category$pagesArgs<ExtArgs>
-    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["category"]>
-
-  export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["category"]>
-
-  export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["category"]>
-
-  export type CategorySelectScalar = {
-    id?: boolean
-    name?: boolean
-  }
-
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["category"]>
-  export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    pages?: boolean | Category$pagesArgs<ExtArgs>
-    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type CategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type CategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Category"
-    objects: {
-      pages: Prisma.$PagePayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-    }, ExtArgs["result"]["category"]>
-    composites: {}
-  }
-
-  type CategoryGetPayload<S extends boolean | null | undefined | CategoryDefaultArgs> = $Result.GetResult<Prisma.$CategoryPayload, S>
-
-  type CategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CategoryCountAggregateInputType | true
-    }
-
-  export interface CategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Category'], meta: { name: 'Category' } }
-    /**
-     * Find zero or one Category that matches the filter.
-     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
-     * @example
-     * // Get one Category
-     * const category = await prisma.category.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CategoryFindUniqueArgs>(args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
-     * @example
-     * // Get one Category
-     * const category = await prisma.category.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Category that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
-     * @example
-     * // Get one Category
-     * const category = await prisma.category.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CategoryFindFirstArgs>(args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Category that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
-     * @example
-     * // Get one Category
-     * const category = await prisma.category.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Categories that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Categories
-     * const categories = await prisma.category.findMany()
-     * 
-     * // Get first 10 Categories
-     * const categories = await prisma.category.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CategoryFindManyArgs>(args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Category.
-     * @param {CategoryCreateArgs} args - Arguments to create a Category.
-     * @example
-     * // Create one Category
-     * const Category = await prisma.category.create({
-     *   data: {
-     *     // ... data to create a Category
-     *   }
-     * })
-     * 
-     */
-    create<T extends CategoryCreateArgs>(args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Categories.
-     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
-     * @example
-     * // Create many Categories
-     * const category = await prisma.category.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CategoryCreateManyArgs>(args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Categories and returns the data saved in the database.
-     * @param {CategoryCreateManyAndReturnArgs} args - Arguments to create many Categories.
-     * @example
-     * // Create many Categories
-     * const category = await prisma.category.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Categories and only return the `id`
-     * const categoryWithIdOnly = await prisma.category.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, CategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Category.
-     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
-     * @example
-     * // Delete one Category
-     * const Category = await prisma.category.delete({
-     *   where: {
-     *     // ... filter to delete one Category
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CategoryDeleteArgs>(args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Category.
-     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
-     * @example
-     * // Update one Category
-     * const category = await prisma.category.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CategoryUpdateArgs>(args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Categories.
-     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
-     * @example
-     * // Delete a few Categories
-     * const { count } = await prisma.category.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CategoryDeleteManyArgs>(args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Categories.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Categories
-     * const category = await prisma.category.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CategoryUpdateManyArgs>(args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Categories and returns the data updated in the database.
-     * @param {CategoryUpdateManyAndReturnArgs} args - Arguments to update many Categories.
-     * @example
-     * // Update many Categories
-     * const category = await prisma.category.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Categories and only return the `id`
-     * const categoryWithIdOnly = await prisma.category.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends CategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, CategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Category.
-     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
-     * @example
-     * // Update or create a Category
-     * const category = await prisma.category.upsert({
-     *   create: {
-     *     // ... data to create a Category
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Category we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CategoryUpsertArgs>(args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Categories.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
-     * @example
-     * // Count the number of Categories
-     * const count = await prisma.category.count({
-     *   where: {
-     *     // ... the filter for the Categories we want to count
-     *   }
-     * })
-    **/
-    count<T extends CategoryCountArgs>(
-      args?: Subset<T, CategoryCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Category.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CategoryAggregateArgs>(args: Subset<T, CategoryAggregateArgs>): Prisma.PrismaPromise<GetCategoryAggregateType<T>>
-
-    /**
-     * Group by Category.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CategoryGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CategoryGroupByArgs['orderBy'] }
-        : { orderBy?: CategoryGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Category model
-   */
-  readonly fields: CategoryFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Category.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    pages<T extends Category$pagesArgs<ExtArgs> = {}>(args?: Subset<T, Category$pagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Category model
-   */
-  interface CategoryFieldRefs {
-    readonly id: FieldRef<"Category", 'String'>
-    readonly name: FieldRef<"Category", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Category findUnique
-   */
-  export type CategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Category to fetch.
-     */
-    where: CategoryWhereUniqueInput
-  }
-
-  /**
-   * Category findUniqueOrThrow
-   */
-  export type CategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Category to fetch.
-     */
-    where: CategoryWhereUniqueInput
-  }
-
-  /**
-   * Category findFirst
-   */
-  export type CategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Category to fetch.
-     */
-    where?: CategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Categories to fetch.
-     */
-    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Categories.
-     */
-    cursor?: CategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Categories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Categories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Categories.
-     */
-    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
-  }
-
-  /**
-   * Category findFirstOrThrow
-   */
-  export type CategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Category to fetch.
-     */
-    where?: CategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Categories to fetch.
-     */
-    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Categories.
-     */
-    cursor?: CategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Categories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Categories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Categories.
-     */
-    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
-  }
-
-  /**
-   * Category findMany
-   */
-  export type CategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Categories to fetch.
-     */
-    where?: CategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Categories to fetch.
-     */
-    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Categories.
-     */
-    cursor?: CategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Categories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Categories.
-     */
-    skip?: number
-    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
-  }
-
-  /**
-   * Category create
-   */
-  export type CategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Category.
-     */
-    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
-  }
-
-  /**
-   * Category createMany
-   */
-  export type CategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Categories.
-     */
-    data: CategoryCreateManyInput | CategoryCreateManyInput[]
-  }
-
-  /**
-   * Category createManyAndReturn
-   */
-  export type CategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * The data used to create many Categories.
-     */
-    data: CategoryCreateManyInput | CategoryCreateManyInput[]
-  }
-
-  /**
-   * Category update
-   */
-  export type CategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Category.
-     */
-    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
-    /**
-     * Choose, which Category to update.
-     */
-    where: CategoryWhereUniqueInput
-  }
-
-  /**
-   * Category updateMany
-   */
-  export type CategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Categories.
-     */
-    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
-    /**
-     * Filter which Categories to update
-     */
-    where?: CategoryWhereInput
-    /**
-     * Limit how many Categories to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Category updateManyAndReturn
-   */
-  export type CategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * The data used to update Categories.
-     */
-    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
-    /**
-     * Filter which Categories to update
-     */
-    where?: CategoryWhereInput
-    /**
-     * Limit how many Categories to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Category upsert
-   */
-  export type CategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Category to update in case it exists.
-     */
-    where: CategoryWhereUniqueInput
-    /**
-     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
-     */
-    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
-    /**
-     * In case the Category was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
-  }
-
-  /**
-   * Category delete
-   */
-  export type CategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    /**
-     * Filter which Category to delete.
-     */
-    where: CategoryWhereUniqueInput
-  }
-
-  /**
-   * Category deleteMany
-   */
-  export type CategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Categories to delete
-     */
-    where?: CategoryWhereInput
-    /**
-     * Limit how many Categories to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Category.pages
-   */
-  export type Category$pagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Page
-     */
-    select?: PageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Page
-     */
-    omit?: PageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageInclude<ExtArgs> | null
-    where?: PageWhereInput
-    orderBy?: PageOrderByWithRelationInput | PageOrderByWithRelationInput[]
-    cursor?: PageWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PageScalarFieldEnum | PageScalarFieldEnum[]
-  }
-
-  /**
-   * Category without action
-   */
-  export type CategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Page
    */
 
@@ -5650,7 +5753,6 @@ export namespace Prisma {
     categoryId?: boolean
     parent?: boolean | Page$parentArgs<ExtArgs>
     subPages?: boolean | Page$subPagesArgs<ExtArgs>
-    revisions?: boolean | Page$revisionsArgs<ExtArgs>
     category?: boolean | Page$categoryArgs<ExtArgs>
     _count?: boolean | PageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["page"]>
@@ -5702,7 +5804,6 @@ export namespace Prisma {
   export type PageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parent?: boolean | Page$parentArgs<ExtArgs>
     subPages?: boolean | Page$subPagesArgs<ExtArgs>
-    revisions?: boolean | Page$revisionsArgs<ExtArgs>
     category?: boolean | Page$categoryArgs<ExtArgs>
     _count?: boolean | PageCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -5720,7 +5821,6 @@ export namespace Prisma {
     objects: {
       parent: Prisma.$PagePayload<ExtArgs> | null
       subPages: Prisma.$PagePayload<ExtArgs>[]
-      revisions: Prisma.$PageRevisionPayload<ExtArgs>[]
       category: Prisma.$CategoryPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6130,7 +6230,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     parent<T extends Page$parentArgs<ExtArgs> = {}>(args?: Subset<T, Page$parentArgs<ExtArgs>>): Prisma__PageClient<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     subPages<T extends Page$subPagesArgs<ExtArgs> = {}>(args?: Subset<T, Page$subPagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    revisions<T extends Page$revisionsArgs<ExtArgs> = {}>(args?: Subset<T, Page$revisionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     category<T extends Page$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Page$categoryArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6608,30 +6707,6 @@ export namespace Prisma {
   }
 
   /**
-   * Page.revisions
-   */
-  export type Page$revisionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    where?: PageRevisionWhereInput
-    orderBy?: PageRevisionOrderByWithRelationInput | PageRevisionOrderByWithRelationInput[]
-    cursor?: PageRevisionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PageRevisionScalarFieldEnum | PageRevisionScalarFieldEnum[]
-  }
-
-  /**
    * Page.category
    */
   export type Page$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6670,1071 +6745,6 @@ export namespace Prisma {
 
 
   /**
-   * Model PageRevision
-   */
-
-  export type AggregatePageRevision = {
-    _count: PageRevisionCountAggregateOutputType | null
-    _min: PageRevisionMinAggregateOutputType | null
-    _max: PageRevisionMaxAggregateOutputType | null
-  }
-
-  export type PageRevisionMinAggregateOutputType = {
-    id: string | null
-    pageId: string | null
-    createdAt: Date | null
-    is_public: boolean | null
-    note: string | null
-  }
-
-  export type PageRevisionMaxAggregateOutputType = {
-    id: string | null
-    pageId: string | null
-    createdAt: Date | null
-    is_public: boolean | null
-    note: string | null
-  }
-
-  export type PageRevisionCountAggregateOutputType = {
-    id: number
-    pageId: number
-    content: number
-    createdAt: number
-    is_public: number
-    note: number
-    _all: number
-  }
-
-
-  export type PageRevisionMinAggregateInputType = {
-    id?: true
-    pageId?: true
-    createdAt?: true
-    is_public?: true
-    note?: true
-  }
-
-  export type PageRevisionMaxAggregateInputType = {
-    id?: true
-    pageId?: true
-    createdAt?: true
-    is_public?: true
-    note?: true
-  }
-
-  export type PageRevisionCountAggregateInputType = {
-    id?: true
-    pageId?: true
-    content?: true
-    createdAt?: true
-    is_public?: true
-    note?: true
-    _all?: true
-  }
-
-  export type PageRevisionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PageRevision to aggregate.
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PageRevisions to fetch.
-     */
-    orderBy?: PageRevisionOrderByWithRelationInput | PageRevisionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PageRevisionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PageRevisions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PageRevisions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned PageRevisions
-    **/
-    _count?: true | PageRevisionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PageRevisionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PageRevisionMaxAggregateInputType
-  }
-
-  export type GetPageRevisionAggregateType<T extends PageRevisionAggregateArgs> = {
-        [P in keyof T & keyof AggregatePageRevision]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePageRevision[P]>
-      : GetScalarType<T[P], AggregatePageRevision[P]>
-  }
-
-
-
-
-  export type PageRevisionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PageRevisionWhereInput
-    orderBy?: PageRevisionOrderByWithAggregationInput | PageRevisionOrderByWithAggregationInput[]
-    by: PageRevisionScalarFieldEnum[] | PageRevisionScalarFieldEnum
-    having?: PageRevisionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PageRevisionCountAggregateInputType | true
-    _min?: PageRevisionMinAggregateInputType
-    _max?: PageRevisionMaxAggregateInputType
-  }
-
-  export type PageRevisionGroupByOutputType = {
-    id: string
-    pageId: string
-    content: JsonValue
-    createdAt: Date
-    is_public: boolean
-    note: string | null
-    _count: PageRevisionCountAggregateOutputType | null
-    _min: PageRevisionMinAggregateOutputType | null
-    _max: PageRevisionMaxAggregateOutputType | null
-  }
-
-  type GetPageRevisionGroupByPayload<T extends PageRevisionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PageRevisionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PageRevisionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PageRevisionGroupByOutputType[P]>
-            : GetScalarType<T[P], PageRevisionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PageRevisionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    pageId?: boolean
-    content?: boolean
-    createdAt?: boolean
-    is_public?: boolean
-    note?: boolean
-    page?: boolean | PageDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pageRevision"]>
-
-  export type PageRevisionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    pageId?: boolean
-    content?: boolean
-    createdAt?: boolean
-    is_public?: boolean
-    note?: boolean
-    page?: boolean | PageDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pageRevision"]>
-
-  export type PageRevisionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    pageId?: boolean
-    content?: boolean
-    createdAt?: boolean
-    is_public?: boolean
-    note?: boolean
-    page?: boolean | PageDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pageRevision"]>
-
-  export type PageRevisionSelectScalar = {
-    id?: boolean
-    pageId?: boolean
-    content?: boolean
-    createdAt?: boolean
-    is_public?: boolean
-    note?: boolean
-  }
-
-  export type PageRevisionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pageId" | "content" | "createdAt" | "is_public" | "note", ExtArgs["result"]["pageRevision"]>
-  export type PageRevisionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    page?: boolean | PageDefaultArgs<ExtArgs>
-  }
-  export type PageRevisionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    page?: boolean | PageDefaultArgs<ExtArgs>
-  }
-  export type PageRevisionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    page?: boolean | PageDefaultArgs<ExtArgs>
-  }
-
-  export type $PageRevisionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PageRevision"
-    objects: {
-      page: Prisma.$PagePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      pageId: string
-      content: Prisma.JsonValue
-      createdAt: Date
-      is_public: boolean
-      note: string | null
-    }, ExtArgs["result"]["pageRevision"]>
-    composites: {}
-  }
-
-  type PageRevisionGetPayload<S extends boolean | null | undefined | PageRevisionDefaultArgs> = $Result.GetResult<Prisma.$PageRevisionPayload, S>
-
-  type PageRevisionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PageRevisionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PageRevisionCountAggregateInputType | true
-    }
-
-  export interface PageRevisionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PageRevision'], meta: { name: 'PageRevision' } }
-    /**
-     * Find zero or one PageRevision that matches the filter.
-     * @param {PageRevisionFindUniqueArgs} args - Arguments to find a PageRevision
-     * @example
-     * // Get one PageRevision
-     * const pageRevision = await prisma.pageRevision.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PageRevisionFindUniqueArgs>(args: SelectSubset<T, PageRevisionFindUniqueArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one PageRevision that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PageRevisionFindUniqueOrThrowArgs} args - Arguments to find a PageRevision
-     * @example
-     * // Get one PageRevision
-     * const pageRevision = await prisma.pageRevision.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PageRevisionFindUniqueOrThrowArgs>(args: SelectSubset<T, PageRevisionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PageRevision that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionFindFirstArgs} args - Arguments to find a PageRevision
-     * @example
-     * // Get one PageRevision
-     * const pageRevision = await prisma.pageRevision.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PageRevisionFindFirstArgs>(args?: SelectSubset<T, PageRevisionFindFirstArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PageRevision that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionFindFirstOrThrowArgs} args - Arguments to find a PageRevision
-     * @example
-     * // Get one PageRevision
-     * const pageRevision = await prisma.pageRevision.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PageRevisionFindFirstOrThrowArgs>(args?: SelectSubset<T, PageRevisionFindFirstOrThrowArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more PageRevisions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all PageRevisions
-     * const pageRevisions = await prisma.pageRevision.findMany()
-     * 
-     * // Get first 10 PageRevisions
-     * const pageRevisions = await prisma.pageRevision.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const pageRevisionWithIdOnly = await prisma.pageRevision.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PageRevisionFindManyArgs>(args?: SelectSubset<T, PageRevisionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a PageRevision.
-     * @param {PageRevisionCreateArgs} args - Arguments to create a PageRevision.
-     * @example
-     * // Create one PageRevision
-     * const PageRevision = await prisma.pageRevision.create({
-     *   data: {
-     *     // ... data to create a PageRevision
-     *   }
-     * })
-     * 
-     */
-    create<T extends PageRevisionCreateArgs>(args: SelectSubset<T, PageRevisionCreateArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many PageRevisions.
-     * @param {PageRevisionCreateManyArgs} args - Arguments to create many PageRevisions.
-     * @example
-     * // Create many PageRevisions
-     * const pageRevision = await prisma.pageRevision.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PageRevisionCreateManyArgs>(args?: SelectSubset<T, PageRevisionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many PageRevisions and returns the data saved in the database.
-     * @param {PageRevisionCreateManyAndReturnArgs} args - Arguments to create many PageRevisions.
-     * @example
-     * // Create many PageRevisions
-     * const pageRevision = await prisma.pageRevision.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many PageRevisions and only return the `id`
-     * const pageRevisionWithIdOnly = await prisma.pageRevision.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PageRevisionCreateManyAndReturnArgs>(args?: SelectSubset<T, PageRevisionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a PageRevision.
-     * @param {PageRevisionDeleteArgs} args - Arguments to delete one PageRevision.
-     * @example
-     * // Delete one PageRevision
-     * const PageRevision = await prisma.pageRevision.delete({
-     *   where: {
-     *     // ... filter to delete one PageRevision
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PageRevisionDeleteArgs>(args: SelectSubset<T, PageRevisionDeleteArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one PageRevision.
-     * @param {PageRevisionUpdateArgs} args - Arguments to update one PageRevision.
-     * @example
-     * // Update one PageRevision
-     * const pageRevision = await prisma.pageRevision.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PageRevisionUpdateArgs>(args: SelectSubset<T, PageRevisionUpdateArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more PageRevisions.
-     * @param {PageRevisionDeleteManyArgs} args - Arguments to filter PageRevisions to delete.
-     * @example
-     * // Delete a few PageRevisions
-     * const { count } = await prisma.pageRevision.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PageRevisionDeleteManyArgs>(args?: SelectSubset<T, PageRevisionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PageRevisions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many PageRevisions
-     * const pageRevision = await prisma.pageRevision.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PageRevisionUpdateManyArgs>(args: SelectSubset<T, PageRevisionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PageRevisions and returns the data updated in the database.
-     * @param {PageRevisionUpdateManyAndReturnArgs} args - Arguments to update many PageRevisions.
-     * @example
-     * // Update many PageRevisions
-     * const pageRevision = await prisma.pageRevision.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more PageRevisions and only return the `id`
-     * const pageRevisionWithIdOnly = await prisma.pageRevision.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PageRevisionUpdateManyAndReturnArgs>(args: SelectSubset<T, PageRevisionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one PageRevision.
-     * @param {PageRevisionUpsertArgs} args - Arguments to update or create a PageRevision.
-     * @example
-     * // Update or create a PageRevision
-     * const pageRevision = await prisma.pageRevision.upsert({
-     *   create: {
-     *     // ... data to create a PageRevision
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the PageRevision we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PageRevisionUpsertArgs>(args: SelectSubset<T, PageRevisionUpsertArgs<ExtArgs>>): Prisma__PageRevisionClient<$Result.GetResult<Prisma.$PageRevisionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of PageRevisions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionCountArgs} args - Arguments to filter PageRevisions to count.
-     * @example
-     * // Count the number of PageRevisions
-     * const count = await prisma.pageRevision.count({
-     *   where: {
-     *     // ... the filter for the PageRevisions we want to count
-     *   }
-     * })
-    **/
-    count<T extends PageRevisionCountArgs>(
-      args?: Subset<T, PageRevisionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PageRevisionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a PageRevision.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PageRevisionAggregateArgs>(args: Subset<T, PageRevisionAggregateArgs>): Prisma.PrismaPromise<GetPageRevisionAggregateType<T>>
-
-    /**
-     * Group by PageRevision.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PageRevisionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PageRevisionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PageRevisionGroupByArgs['orderBy'] }
-        : { orderBy?: PageRevisionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PageRevisionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPageRevisionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PageRevision model
-   */
-  readonly fields: PageRevisionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for PageRevision.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PageRevisionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    page<T extends PageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PageDefaultArgs<ExtArgs>>): Prisma__PageClient<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the PageRevision model
-   */
-  interface PageRevisionFieldRefs {
-    readonly id: FieldRef<"PageRevision", 'String'>
-    readonly pageId: FieldRef<"PageRevision", 'String'>
-    readonly content: FieldRef<"PageRevision", 'Json'>
-    readonly createdAt: FieldRef<"PageRevision", 'DateTime'>
-    readonly is_public: FieldRef<"PageRevision", 'Boolean'>
-    readonly note: FieldRef<"PageRevision", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PageRevision findUnique
-   */
-  export type PageRevisionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * Filter, which PageRevision to fetch.
-     */
-    where: PageRevisionWhereUniqueInput
-  }
-
-  /**
-   * PageRevision findUniqueOrThrow
-   */
-  export type PageRevisionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * Filter, which PageRevision to fetch.
-     */
-    where: PageRevisionWhereUniqueInput
-  }
-
-  /**
-   * PageRevision findFirst
-   */
-  export type PageRevisionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * Filter, which PageRevision to fetch.
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PageRevisions to fetch.
-     */
-    orderBy?: PageRevisionOrderByWithRelationInput | PageRevisionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PageRevisions.
-     */
-    cursor?: PageRevisionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PageRevisions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PageRevisions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PageRevisions.
-     */
-    distinct?: PageRevisionScalarFieldEnum | PageRevisionScalarFieldEnum[]
-  }
-
-  /**
-   * PageRevision findFirstOrThrow
-   */
-  export type PageRevisionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * Filter, which PageRevision to fetch.
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PageRevisions to fetch.
-     */
-    orderBy?: PageRevisionOrderByWithRelationInput | PageRevisionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PageRevisions.
-     */
-    cursor?: PageRevisionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PageRevisions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PageRevisions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PageRevisions.
-     */
-    distinct?: PageRevisionScalarFieldEnum | PageRevisionScalarFieldEnum[]
-  }
-
-  /**
-   * PageRevision findMany
-   */
-  export type PageRevisionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * Filter, which PageRevisions to fetch.
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PageRevisions to fetch.
-     */
-    orderBy?: PageRevisionOrderByWithRelationInput | PageRevisionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing PageRevisions.
-     */
-    cursor?: PageRevisionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PageRevisions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PageRevisions.
-     */
-    skip?: number
-    distinct?: PageRevisionScalarFieldEnum | PageRevisionScalarFieldEnum[]
-  }
-
-  /**
-   * PageRevision create
-   */
-  export type PageRevisionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * The data needed to create a PageRevision.
-     */
-    data: XOR<PageRevisionCreateInput, PageRevisionUncheckedCreateInput>
-  }
-
-  /**
-   * PageRevision createMany
-   */
-  export type PageRevisionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many PageRevisions.
-     */
-    data: PageRevisionCreateManyInput | PageRevisionCreateManyInput[]
-  }
-
-  /**
-   * PageRevision createManyAndReturn
-   */
-  export type PageRevisionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * The data used to create many PageRevisions.
-     */
-    data: PageRevisionCreateManyInput | PageRevisionCreateManyInput[]
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PageRevision update
-   */
-  export type PageRevisionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * The data needed to update a PageRevision.
-     */
-    data: XOR<PageRevisionUpdateInput, PageRevisionUncheckedUpdateInput>
-    /**
-     * Choose, which PageRevision to update.
-     */
-    where: PageRevisionWhereUniqueInput
-  }
-
-  /**
-   * PageRevision updateMany
-   */
-  export type PageRevisionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update PageRevisions.
-     */
-    data: XOR<PageRevisionUpdateManyMutationInput, PageRevisionUncheckedUpdateManyInput>
-    /**
-     * Filter which PageRevisions to update
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * Limit how many PageRevisions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * PageRevision updateManyAndReturn
-   */
-  export type PageRevisionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * The data used to update PageRevisions.
-     */
-    data: XOR<PageRevisionUpdateManyMutationInput, PageRevisionUncheckedUpdateManyInput>
-    /**
-     * Filter which PageRevisions to update
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * Limit how many PageRevisions to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PageRevision upsert
-   */
-  export type PageRevisionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * The filter to search for the PageRevision to update in case it exists.
-     */
-    where: PageRevisionWhereUniqueInput
-    /**
-     * In case the PageRevision found by the `where` argument doesn't exist, create a new PageRevision with this data.
-     */
-    create: XOR<PageRevisionCreateInput, PageRevisionUncheckedCreateInput>
-    /**
-     * In case the PageRevision was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PageRevisionUpdateInput, PageRevisionUncheckedUpdateInput>
-  }
-
-  /**
-   * PageRevision delete
-   */
-  export type PageRevisionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-    /**
-     * Filter which PageRevision to delete.
-     */
-    where: PageRevisionWhereUniqueInput
-  }
-
-  /**
-   * PageRevision deleteMany
-   */
-  export type PageRevisionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PageRevisions to delete
-     */
-    where?: PageRevisionWhereInput
-    /**
-     * Limit how many PageRevisions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * PageRevision without action
-   */
-  export type PageRevisionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PageRevision
-     */
-    select?: PageRevisionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PageRevision
-     */
-    omit?: PageRevisionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PageRevisionInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -7758,10 +6768,20 @@ export namespace Prisma {
   export const VersionScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    isCurrent: 'isCurrent'
   };
 
   export type VersionScalarFieldEnum = (typeof VersionScalarFieldEnum)[keyof typeof VersionScalarFieldEnum]
+
+
+  export const CategoryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    versionId: 'versionId'
+  };
+
+  export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
   export const SettingScalarFieldEnum: {
@@ -7772,14 +6792,6 @@ export namespace Prisma {
   };
 
   export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
-
-
-  export const CategoryScalarFieldEnum: {
-    id: 'id',
-    name: 'name'
-  };
-
-  export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
   export const PageScalarFieldEnum: {
@@ -7798,18 +6810,6 @@ export namespace Prisma {
   export type PageScalarFieldEnum = (typeof PageScalarFieldEnum)[keyof typeof PageScalarFieldEnum]
 
 
-  export const PageRevisionScalarFieldEnum: {
-    id: 'id',
-    pageId: 'pageId',
-    content: 'content',
-    createdAt: 'createdAt',
-    is_public: 'is_public',
-    note: 'note'
-  };
-
-  export type PageRevisionScalarFieldEnum = (typeof PageRevisionScalarFieldEnum)[keyof typeof PageRevisionScalarFieldEnum]
-
-
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -7823,6 +6823,14 @@ export namespace Prisma {
   };
 
   export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const JsonNullValueFilter: {
@@ -7840,14 +6848,6 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -7877,6 +6877,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -7887,13 +6894,6 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -7963,12 +6963,16 @@ export namespace Prisma {
     id?: IntFilter<"Version"> | number
     name?: StringFilter<"Version"> | string
     createdAt?: DateTimeFilter<"Version"> | Date | string
+    isCurrent?: BoolFilter<"Version"> | boolean
+    categories?: CategoryListRelationFilter
   }
 
   export type VersionOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    isCurrent?: SortOrder
+    categories?: CategoryOrderByRelationAggregateInput
   }
 
   export type VersionWhereUniqueInput = Prisma.AtLeast<{
@@ -7978,12 +6982,15 @@ export namespace Prisma {
     NOT?: VersionWhereInput | VersionWhereInput[]
     name?: StringFilter<"Version"> | string
     createdAt?: DateTimeFilter<"Version"> | Date | string
+    isCurrent?: BoolFilter<"Version"> | boolean
+    categories?: CategoryListRelationFilter
   }, "id">
 
   export type VersionOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    isCurrent?: SortOrder
     _count?: VersionCountOrderByAggregateInput
     _avg?: VersionAvgOrderByAggregateInput
     _max?: VersionMaxOrderByAggregateInput
@@ -7998,6 +7005,57 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Version"> | number
     name?: StringWithAggregatesFilter<"Version"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Version"> | Date | string
+    isCurrent?: BoolWithAggregatesFilter<"Version"> | boolean
+  }
+
+  export type CategoryWhereInput = {
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    id?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
+    versionId?: IntNullableFilter<"Category"> | number | null
+    pages?: PageListRelationFilter
+    version?: XOR<VersionNullableScalarRelationFilter, VersionWhereInput> | null
+  }
+
+  export type CategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    versionId?: SortOrderInput | SortOrder
+    pages?: PageOrderByRelationAggregateInput
+    version?: VersionOrderByWithRelationInput
+  }
+
+  export type CategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    name?: StringFilter<"Category"> | string
+    versionId?: IntNullableFilter<"Category"> | number | null
+    pages?: PageListRelationFilter
+    version?: XOR<VersionNullableScalarRelationFilter, VersionWhereInput> | null
+  }, "id">
+
+  export type CategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    versionId?: SortOrderInput | SortOrder
+    _count?: CategoryCountOrderByAggregateInput
+    _avg?: CategoryAvgOrderByAggregateInput
+    _max?: CategoryMaxOrderByAggregateInput
+    _min?: CategoryMinOrderByAggregateInput
+    _sum?: CategorySumOrderByAggregateInput
+  }
+
+  export type CategoryScalarWhereWithAggregatesInput = {
+    AND?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    OR?: CategoryScalarWhereWithAggregatesInput[]
+    NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Category"> | string
+    name?: StringWithAggregatesFilter<"Category"> | string
+    versionId?: IntNullableWithAggregatesFilter<"Category"> | number | null
   }
 
   export type SettingWhereInput = {
@@ -8047,46 +7105,6 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Setting"> | Date | string
   }
 
-  export type CategoryWhereInput = {
-    AND?: CategoryWhereInput | CategoryWhereInput[]
-    OR?: CategoryWhereInput[]
-    NOT?: CategoryWhereInput | CategoryWhereInput[]
-    id?: StringFilter<"Category"> | string
-    name?: StringFilter<"Category"> | string
-    pages?: PageListRelationFilter
-  }
-
-  export type CategoryOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    pages?: PageOrderByRelationAggregateInput
-  }
-
-  export type CategoryWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: CategoryWhereInput | CategoryWhereInput[]
-    OR?: CategoryWhereInput[]
-    NOT?: CategoryWhereInput | CategoryWhereInput[]
-    name?: StringFilter<"Category"> | string
-    pages?: PageListRelationFilter
-  }, "id">
-
-  export type CategoryOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    _count?: CategoryCountOrderByAggregateInput
-    _max?: CategoryMaxOrderByAggregateInput
-    _min?: CategoryMinOrderByAggregateInput
-  }
-
-  export type CategoryScalarWhereWithAggregatesInput = {
-    AND?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
-    OR?: CategoryScalarWhereWithAggregatesInput[]
-    NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Category"> | string
-    name?: StringWithAggregatesFilter<"Category"> | string
-  }
-
   export type PageWhereInput = {
     AND?: PageWhereInput | PageWhereInput[]
     OR?: PageWhereInput[]
@@ -8103,7 +7121,6 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"Page"> | string | null
     parent?: XOR<PageNullableScalarRelationFilter, PageWhereInput> | null
     subPages?: PageListRelationFilter
-    revisions?: PageRevisionListRelationFilter
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
   }
 
@@ -8120,7 +7137,6 @@ export namespace Prisma {
     categoryId?: SortOrderInput | SortOrder
     parent?: PageOrderByWithRelationInput
     subPages?: PageOrderByRelationAggregateInput
-    revisions?: PageRevisionOrderByRelationAggregateInput
     category?: CategoryOrderByWithRelationInput
   }
 
@@ -8140,7 +7156,6 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"Page"> | string | null
     parent?: XOR<PageNullableScalarRelationFilter, PageWhereInput> | null
     subPages?: PageListRelationFilter
-    revisions?: PageRevisionListRelationFilter
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
   }, "id" | "slug">
 
@@ -8176,66 +7191,6 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Page"> | Date | string
     is_public?: BoolWithAggregatesFilter<"Page"> | boolean
     categoryId?: StringNullableWithAggregatesFilter<"Page"> | string | null
-  }
-
-  export type PageRevisionWhereInput = {
-    AND?: PageRevisionWhereInput | PageRevisionWhereInput[]
-    OR?: PageRevisionWhereInput[]
-    NOT?: PageRevisionWhereInput | PageRevisionWhereInput[]
-    id?: StringFilter<"PageRevision"> | string
-    pageId?: StringFilter<"PageRevision"> | string
-    content?: JsonFilter<"PageRevision">
-    createdAt?: DateTimeFilter<"PageRevision"> | Date | string
-    is_public?: BoolFilter<"PageRevision"> | boolean
-    note?: StringNullableFilter<"PageRevision"> | string | null
-    page?: XOR<PageScalarRelationFilter, PageWhereInput>
-  }
-
-  export type PageRevisionOrderByWithRelationInput = {
-    id?: SortOrder
-    pageId?: SortOrder
-    content?: SortOrder
-    createdAt?: SortOrder
-    is_public?: SortOrder
-    note?: SortOrderInput | SortOrder
-    page?: PageOrderByWithRelationInput
-  }
-
-  export type PageRevisionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PageRevisionWhereInput | PageRevisionWhereInput[]
-    OR?: PageRevisionWhereInput[]
-    NOT?: PageRevisionWhereInput | PageRevisionWhereInput[]
-    pageId?: StringFilter<"PageRevision"> | string
-    content?: JsonFilter<"PageRevision">
-    createdAt?: DateTimeFilter<"PageRevision"> | Date | string
-    is_public?: BoolFilter<"PageRevision"> | boolean
-    note?: StringNullableFilter<"PageRevision"> | string | null
-    page?: XOR<PageScalarRelationFilter, PageWhereInput>
-  }, "id">
-
-  export type PageRevisionOrderByWithAggregationInput = {
-    id?: SortOrder
-    pageId?: SortOrder
-    content?: SortOrder
-    createdAt?: SortOrder
-    is_public?: SortOrder
-    note?: SortOrderInput | SortOrder
-    _count?: PageRevisionCountOrderByAggregateInput
-    _max?: PageRevisionMaxOrderByAggregateInput
-    _min?: PageRevisionMinOrderByAggregateInput
-  }
-
-  export type PageRevisionScalarWhereWithAggregatesInput = {
-    AND?: PageRevisionScalarWhereWithAggregatesInput | PageRevisionScalarWhereWithAggregatesInput[]
-    OR?: PageRevisionScalarWhereWithAggregatesInput[]
-    NOT?: PageRevisionScalarWhereWithAggregatesInput | PageRevisionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"PageRevision"> | string
-    pageId?: StringWithAggregatesFilter<"PageRevision"> | string
-    content?: JsonWithAggregatesFilter<"PageRevision">
-    createdAt?: DateTimeWithAggregatesFilter<"PageRevision"> | Date | string
-    is_public?: BoolWithAggregatesFilter<"PageRevision"> | boolean
-    note?: StringNullableWithAggregatesFilter<"PageRevision"> | string | null
   }
 
   export type UserCreateInput = {
@@ -8286,41 +7241,97 @@ export namespace Prisma {
 
   export type VersionCreateInput = {
     name: string
-    createdAt?: Date | string
+    createdAt: Date | string
+    isCurrent?: boolean
+    categories?: CategoryCreateNestedManyWithoutVersionInput
   }
 
   export type VersionUncheckedCreateInput = {
     id?: number
     name: string
-    createdAt?: Date | string
+    createdAt: Date | string
+    isCurrent?: boolean
+    categories?: CategoryUncheckedCreateNestedManyWithoutVersionInput
   }
 
   export type VersionUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    categories?: CategoryUpdateManyWithoutVersionNestedInput
   }
 
   export type VersionUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    categories?: CategoryUncheckedUpdateManyWithoutVersionNestedInput
   }
 
   export type VersionCreateManyInput = {
     id?: number
     name: string
-    createdAt?: Date | string
+    createdAt: Date | string
+    isCurrent?: boolean
   }
 
   export type VersionUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VersionUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CategoryCreateInput = {
+    id?: string
+    name: string
+    pages?: PageCreateNestedManyWithoutCategoryInput
+    version?: VersionCreateNestedOneWithoutCategoriesInput
+  }
+
+  export type CategoryUncheckedCreateInput = {
+    id?: string
+    name: string
+    versionId?: number | null
+    pages?: PageUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    pages?: PageUpdateManyWithoutCategoryNestedInput
+    version?: VersionUpdateOneWithoutCategoriesNestedInput
+  }
+
+  export type CategoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    versionId?: NullableIntFieldUpdateOperationsInput | number | null
+    pages?: PageUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryCreateManyInput = {
+    id?: string
+    name: string
+    versionId?: number | null
+  }
+
+  export type CategoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    versionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type SettingCreateInput = {
@@ -8372,45 +7383,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CategoryCreateInput = {
-    id?: string
-    name: string
-    pages?: PageCreateNestedManyWithoutCategoryInput
-  }
-
-  export type CategoryUncheckedCreateInput = {
-    id?: string
-    name: string
-    pages?: PageUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type CategoryUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    pages?: PageUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type CategoryUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    pages?: PageUncheckedUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type CategoryCreateManyInput = {
-    id?: string
-    name: string
-  }
-
-  export type CategoryUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CategoryUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
   export type PageCreateInput = {
     id?: string
     title: string
@@ -8422,7 +7394,6 @@ export namespace Prisma {
     is_public?: boolean
     parent?: PageCreateNestedOneWithoutSubPagesInput
     subPages?: PageCreateNestedManyWithoutParentInput
-    revisions?: PageRevisionCreateNestedManyWithoutPageInput
     category?: CategoryCreateNestedOneWithoutPagesInput
   }
 
@@ -8438,7 +7409,6 @@ export namespace Prisma {
     is_public?: boolean
     categoryId?: string | null
     subPages?: PageUncheckedCreateNestedManyWithoutParentInput
-    revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
 
   export type PageUpdateInput = {
@@ -8452,7 +7422,6 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     parent?: PageUpdateOneWithoutSubPagesNestedInput
     subPages?: PageUpdateManyWithoutParentNestedInput
-    revisions?: PageRevisionUpdateManyWithoutPageNestedInput
     category?: CategoryUpdateOneWithoutPagesNestedInput
   }
 
@@ -8468,7 +7437,6 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
-    revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
 
   export type PageCreateManyInput = {
@@ -8506,68 +7474,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PageRevisionCreateInput = {
-    id?: string
-    content: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    is_public?: boolean
-    note?: string | null
-    page: PageCreateNestedOneWithoutRevisionsInput
-  }
-
-  export type PageRevisionUncheckedCreateInput = {
-    id?: string
-    pageId: string
-    content: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    is_public?: boolean
-    note?: string | null
-  }
-
-  export type PageRevisionUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
-    page?: PageUpdateOneRequiredWithoutRevisionsNestedInput
-  }
-
-  export type PageRevisionUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    pageId?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PageRevisionCreateManyInput = {
-    id?: string
-    pageId: string
-    content: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    is_public?: boolean
-    note?: string | null
-  }
-
-  export type PageRevisionUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PageRevisionUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    pageId?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -8668,10 +7574,26 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type CategoryListRelationFilter = {
+    every?: CategoryWhereInput
+    some?: CategoryWhereInput
+    none?: CategoryWhereInput
+  }
+
+  export type CategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type VersionCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    isCurrent?: SortOrder
   }
 
   export type VersionAvgOrderByAggregateInput = {
@@ -8682,12 +7604,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    isCurrent?: SortOrder
   }
 
   export type VersionMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    isCurrent?: SortOrder
   }
 
   export type VersionSumOrderByAggregateInput = {
@@ -8706,6 +7630,87 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type PageListRelationFilter = {
+    every?: PageWhereInput
+    some?: PageWhereInput
+    none?: PageWhereInput
+  }
+
+  export type VersionNullableScalarRelationFilter = {
+    is?: VersionWhereInput | null
+    isNot?: VersionWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type PageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    versionId?: SortOrder
+  }
+
+  export type CategoryAvgOrderByAggregateInput = {
+    versionId?: SortOrder
+  }
+
+  export type CategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    versionId?: SortOrder
+  }
+
+  export type CategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    versionId?: SortOrder
+  }
+
+  export type CategorySumOrderByAggregateInput = {
+    versionId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -8766,31 +7771,6 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type PageListRelationFilter = {
-    every?: PageWhereInput
-    some?: PageWhereInput
-    none?: PageWhereInput
-  }
-
-  export type PageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CategoryCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type CategoryMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type CategoryMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -8805,34 +7785,14 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type PageNullableScalarRelationFilter = {
     is?: PageWhereInput | null
     isNot?: PageWhereInput | null
   }
 
-  export type PageRevisionListRelationFilter = {
-    every?: PageRevisionWhereInput
-    some?: PageRevisionWhereInput
-    none?: PageRevisionWhereInput
-  }
-
   export type CategoryNullableScalarRelationFilter = {
     is?: CategoryWhereInput | null
     isNot?: CategoryWhereInput | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
-  export type PageRevisionOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type PageCountOrderByAggregateInput = {
@@ -8897,44 +7857,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type PageScalarRelationFilter = {
-    is?: PageWhereInput
-    isNot?: PageWhereInput
-  }
-
-  export type PageRevisionCountOrderByAggregateInput = {
-    id?: SortOrder
-    pageId?: SortOrder
-    content?: SortOrder
-    createdAt?: SortOrder
-    is_public?: SortOrder
-    note?: SortOrder
-  }
-
-  export type PageRevisionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    pageId?: SortOrder
-    createdAt?: SortOrder
-    is_public?: SortOrder
-    note?: SortOrder
-  }
-
-  export type PageRevisionMinOrderByAggregateInput = {
-    id?: SortOrder
-    pageId?: SortOrder
-    createdAt?: SortOrder
-    is_public?: SortOrder
-    note?: SortOrder
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -8947,8 +7869,54 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type CategoryCreateNestedManyWithoutVersionInput = {
+    create?: XOR<CategoryCreateWithoutVersionInput, CategoryUncheckedCreateWithoutVersionInput> | CategoryCreateWithoutVersionInput[] | CategoryUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutVersionInput | CategoryCreateOrConnectWithoutVersionInput[]
+    createMany?: CategoryCreateManyVersionInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type CategoryUncheckedCreateNestedManyWithoutVersionInput = {
+    create?: XOR<CategoryCreateWithoutVersionInput, CategoryUncheckedCreateWithoutVersionInput> | CategoryCreateWithoutVersionInput[] | CategoryUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutVersionInput | CategoryCreateOrConnectWithoutVersionInput[]
+    createMany?: CategoryCreateManyVersionInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type CategoryUpdateManyWithoutVersionNestedInput = {
+    create?: XOR<CategoryCreateWithoutVersionInput, CategoryUncheckedCreateWithoutVersionInput> | CategoryCreateWithoutVersionInput[] | CategoryUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutVersionInput | CategoryCreateOrConnectWithoutVersionInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutVersionInput | CategoryUpsertWithWhereUniqueWithoutVersionInput[]
+    createMany?: CategoryCreateManyVersionInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutVersionInput | CategoryUpdateWithWhereUniqueWithoutVersionInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutVersionInput | CategoryUpdateManyWithWhereWithoutVersionInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutVersionNestedInput = {
+    create?: XOR<CategoryCreateWithoutVersionInput, CategoryUncheckedCreateWithoutVersionInput> | CategoryCreateWithoutVersionInput[] | CategoryUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutVersionInput | CategoryCreateOrConnectWithoutVersionInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutVersionInput | CategoryUpsertWithWhereUniqueWithoutVersionInput[]
+    createMany?: CategoryCreateManyVersionInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutVersionInput | CategoryUpdateWithWhereUniqueWithoutVersionInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutVersionInput | CategoryUpdateManyWithWhereWithoutVersionInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type PageCreateNestedManyWithoutCategoryInput = {
@@ -8956,6 +7924,12 @@ export namespace Prisma {
     connectOrCreate?: PageCreateOrConnectWithoutCategoryInput | PageCreateOrConnectWithoutCategoryInput[]
     createMany?: PageCreateManyCategoryInputEnvelope
     connect?: PageWhereUniqueInput | PageWhereUniqueInput[]
+  }
+
+  export type VersionCreateNestedOneWithoutCategoriesInput = {
+    create?: XOR<VersionCreateWithoutCategoriesInput, VersionUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: VersionCreateOrConnectWithoutCategoriesInput
+    connect?: VersionWhereUniqueInput
   }
 
   export type PageUncheckedCreateNestedManyWithoutCategoryInput = {
@@ -8977,6 +7951,24 @@ export namespace Prisma {
     update?: PageUpdateWithWhereUniqueWithoutCategoryInput | PageUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: PageUpdateManyWithWhereWithoutCategoryInput | PageUpdateManyWithWhereWithoutCategoryInput[]
     deleteMany?: PageScalarWhereInput | PageScalarWhereInput[]
+  }
+
+  export type VersionUpdateOneWithoutCategoriesNestedInput = {
+    create?: XOR<VersionCreateWithoutCategoriesInput, VersionUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: VersionCreateOrConnectWithoutCategoriesInput
+    upsert?: VersionUpsertWithoutCategoriesInput
+    disconnect?: VersionWhereInput | boolean
+    delete?: VersionWhereInput | boolean
+    connect?: VersionWhereUniqueInput
+    update?: XOR<XOR<VersionUpdateToOneWithWhereWithoutCategoriesInput, VersionUpdateWithoutCategoriesInput>, VersionUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type PageUncheckedUpdateManyWithoutCategoryNestedInput = {
@@ -9006,13 +7998,6 @@ export namespace Prisma {
     connect?: PageWhereUniqueInput | PageWhereUniqueInput[]
   }
 
-  export type PageRevisionCreateNestedManyWithoutPageInput = {
-    create?: XOR<PageRevisionCreateWithoutPageInput, PageRevisionUncheckedCreateWithoutPageInput> | PageRevisionCreateWithoutPageInput[] | PageRevisionUncheckedCreateWithoutPageInput[]
-    connectOrCreate?: PageRevisionCreateOrConnectWithoutPageInput | PageRevisionCreateOrConnectWithoutPageInput[]
-    createMany?: PageRevisionCreateManyPageInputEnvelope
-    connect?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-  }
-
   export type CategoryCreateNestedOneWithoutPagesInput = {
     create?: XOR<CategoryCreateWithoutPagesInput, CategoryUncheckedCreateWithoutPagesInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutPagesInput
@@ -9024,17 +8009,6 @@ export namespace Prisma {
     connectOrCreate?: PageCreateOrConnectWithoutParentInput | PageCreateOrConnectWithoutParentInput[]
     createMany?: PageCreateManyParentInputEnvelope
     connect?: PageWhereUniqueInput | PageWhereUniqueInput[]
-  }
-
-  export type PageRevisionUncheckedCreateNestedManyWithoutPageInput = {
-    create?: XOR<PageRevisionCreateWithoutPageInput, PageRevisionUncheckedCreateWithoutPageInput> | PageRevisionCreateWithoutPageInput[] | PageRevisionUncheckedCreateWithoutPageInput[]
-    connectOrCreate?: PageRevisionCreateOrConnectWithoutPageInput | PageRevisionCreateOrConnectWithoutPageInput[]
-    createMany?: PageRevisionCreateManyPageInputEnvelope
-    connect?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type PageUpdateOneWithoutSubPagesNestedInput = {
@@ -9059,20 +8033,6 @@ export namespace Prisma {
     update?: PageUpdateWithWhereUniqueWithoutParentInput | PageUpdateWithWhereUniqueWithoutParentInput[]
     updateMany?: PageUpdateManyWithWhereWithoutParentInput | PageUpdateManyWithWhereWithoutParentInput[]
     deleteMany?: PageScalarWhereInput | PageScalarWhereInput[]
-  }
-
-  export type PageRevisionUpdateManyWithoutPageNestedInput = {
-    create?: XOR<PageRevisionCreateWithoutPageInput, PageRevisionUncheckedCreateWithoutPageInput> | PageRevisionCreateWithoutPageInput[] | PageRevisionUncheckedCreateWithoutPageInput[]
-    connectOrCreate?: PageRevisionCreateOrConnectWithoutPageInput | PageRevisionCreateOrConnectWithoutPageInput[]
-    upsert?: PageRevisionUpsertWithWhereUniqueWithoutPageInput | PageRevisionUpsertWithWhereUniqueWithoutPageInput[]
-    createMany?: PageRevisionCreateManyPageInputEnvelope
-    set?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    disconnect?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    delete?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    connect?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    update?: PageRevisionUpdateWithWhereUniqueWithoutPageInput | PageRevisionUpdateWithWhereUniqueWithoutPageInput[]
-    updateMany?: PageRevisionUpdateManyWithWhereWithoutPageInput | PageRevisionUpdateManyWithWhereWithoutPageInput[]
-    deleteMany?: PageRevisionScalarWhereInput | PageRevisionScalarWhereInput[]
   }
 
   export type CategoryUpdateOneWithoutPagesNestedInput = {
@@ -9101,34 +8061,6 @@ export namespace Prisma {
     update?: PageUpdateWithWhereUniqueWithoutParentInput | PageUpdateWithWhereUniqueWithoutParentInput[]
     updateMany?: PageUpdateManyWithWhereWithoutParentInput | PageUpdateManyWithWhereWithoutParentInput[]
     deleteMany?: PageScalarWhereInput | PageScalarWhereInput[]
-  }
-
-  export type PageRevisionUncheckedUpdateManyWithoutPageNestedInput = {
-    create?: XOR<PageRevisionCreateWithoutPageInput, PageRevisionUncheckedCreateWithoutPageInput> | PageRevisionCreateWithoutPageInput[] | PageRevisionUncheckedCreateWithoutPageInput[]
-    connectOrCreate?: PageRevisionCreateOrConnectWithoutPageInput | PageRevisionCreateOrConnectWithoutPageInput[]
-    upsert?: PageRevisionUpsertWithWhereUniqueWithoutPageInput | PageRevisionUpsertWithWhereUniqueWithoutPageInput[]
-    createMany?: PageRevisionCreateManyPageInputEnvelope
-    set?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    disconnect?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    delete?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    connect?: PageRevisionWhereUniqueInput | PageRevisionWhereUniqueInput[]
-    update?: PageRevisionUpdateWithWhereUniqueWithoutPageInput | PageRevisionUpdateWithWhereUniqueWithoutPageInput[]
-    updateMany?: PageRevisionUpdateManyWithWhereWithoutPageInput | PageRevisionUpdateManyWithWhereWithoutPageInput[]
-    deleteMany?: PageRevisionScalarWhereInput | PageRevisionScalarWhereInput[]
-  }
-
-  export type PageCreateNestedOneWithoutRevisionsInput = {
-    create?: XOR<PageCreateWithoutRevisionsInput, PageUncheckedCreateWithoutRevisionsInput>
-    connectOrCreate?: PageCreateOrConnectWithoutRevisionsInput
-    connect?: PageWhereUniqueInput
-  }
-
-  export type PageUpdateOneRequiredWithoutRevisionsNestedInput = {
-    create?: XOR<PageCreateWithoutRevisionsInput, PageUncheckedCreateWithoutRevisionsInput>
-    connectOrCreate?: PageCreateOrConnectWithoutRevisionsInput
-    upsert?: PageUpsertWithoutRevisionsInput
-    connect?: PageWhereUniqueInput
-    update?: XOR<XOR<PageUpdateToOneWithWhereWithoutRevisionsInput, PageUpdateWithoutRevisionsInput>, PageUncheckedUpdateWithoutRevisionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9211,6 +8143,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -9223,6 +8160,52 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -9257,11 +8240,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -9279,23 +8257,50 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type CategoryCreateWithoutVersionInput = {
+    id?: string
+    name: string
+    pages?: PageCreateNestedManyWithoutCategoryInput
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type CategoryUncheckedCreateWithoutVersionInput = {
+    id?: string
+    name: string
+    pages?: PageUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutVersionInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutVersionInput, CategoryUncheckedCreateWithoutVersionInput>
+  }
+
+  export type CategoryCreateManyVersionInputEnvelope = {
+    data: CategoryCreateManyVersionInput | CategoryCreateManyVersionInput[]
+  }
+
+  export type CategoryUpsertWithWhereUniqueWithoutVersionInput = {
+    where: CategoryWhereUniqueInput
+    update: XOR<CategoryUpdateWithoutVersionInput, CategoryUncheckedUpdateWithoutVersionInput>
+    create: XOR<CategoryCreateWithoutVersionInput, CategoryUncheckedCreateWithoutVersionInput>
+  }
+
+  export type CategoryUpdateWithWhereUniqueWithoutVersionInput = {
+    where: CategoryWhereUniqueInput
+    data: XOR<CategoryUpdateWithoutVersionInput, CategoryUncheckedUpdateWithoutVersionInput>
+  }
+
+  export type CategoryUpdateManyWithWhereWithoutVersionInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutVersionInput>
+  }
+
+  export type CategoryScalarWhereInput = {
+    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    OR?: CategoryScalarWhereInput[]
+    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    id?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
+    versionId?: IntNullableFilter<"Category"> | number | null
   }
 
   export type PageCreateWithoutCategoryInput = {
@@ -9309,7 +8314,6 @@ export namespace Prisma {
     is_public?: boolean
     parent?: PageCreateNestedOneWithoutSubPagesInput
     subPages?: PageCreateNestedManyWithoutParentInput
-    revisions?: PageRevisionCreateNestedManyWithoutPageInput
   }
 
   export type PageUncheckedCreateWithoutCategoryInput = {
@@ -9323,7 +8327,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     is_public?: boolean
     subPages?: PageUncheckedCreateNestedManyWithoutParentInput
-    revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
 
   export type PageCreateOrConnectWithoutCategoryInput = {
@@ -9333,6 +8336,24 @@ export namespace Prisma {
 
   export type PageCreateManyCategoryInputEnvelope = {
     data: PageCreateManyCategoryInput | PageCreateManyCategoryInput[]
+  }
+
+  export type VersionCreateWithoutCategoriesInput = {
+    name: string
+    createdAt: Date | string
+    isCurrent?: boolean
+  }
+
+  export type VersionUncheckedCreateWithoutCategoriesInput = {
+    id?: number
+    name: string
+    createdAt: Date | string
+    isCurrent?: boolean
+  }
+
+  export type VersionCreateOrConnectWithoutCategoriesInput = {
+    where: VersionWhereUniqueInput
+    create: XOR<VersionCreateWithoutCategoriesInput, VersionUncheckedCreateWithoutCategoriesInput>
   }
 
   export type PageUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -9367,6 +8388,30 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"Page"> | string | null
   }
 
+  export type VersionUpsertWithoutCategoriesInput = {
+    update: XOR<VersionUpdateWithoutCategoriesInput, VersionUncheckedUpdateWithoutCategoriesInput>
+    create: XOR<VersionCreateWithoutCategoriesInput, VersionUncheckedCreateWithoutCategoriesInput>
+    where?: VersionWhereInput
+  }
+
+  export type VersionUpdateToOneWithWhereWithoutCategoriesInput = {
+    where?: VersionWhereInput
+    data: XOR<VersionUpdateWithoutCategoriesInput, VersionUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type VersionUpdateWithoutCategoriesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type VersionUncheckedUpdateWithoutCategoriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type PageCreateWithoutSubPagesInput = {
     id?: string
     title: string
@@ -9377,7 +8422,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     is_public?: boolean
     parent?: PageCreateNestedOneWithoutSubPagesInput
-    revisions?: PageRevisionCreateNestedManyWithoutPageInput
     category?: CategoryCreateNestedOneWithoutPagesInput
   }
 
@@ -9392,7 +8436,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     is_public?: boolean
     categoryId?: string | null
-    revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
 
   export type PageCreateOrConnectWithoutSubPagesInput = {
@@ -9410,7 +8453,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     is_public?: boolean
     subPages?: PageCreateNestedManyWithoutParentInput
-    revisions?: PageRevisionCreateNestedManyWithoutPageInput
     category?: CategoryCreateNestedOneWithoutPagesInput
   }
 
@@ -9425,7 +8467,6 @@ export namespace Prisma {
     is_public?: boolean
     categoryId?: string | null
     subPages?: PageUncheckedCreateNestedManyWithoutParentInput
-    revisions?: PageRevisionUncheckedCreateNestedManyWithoutPageInput
   }
 
   export type PageCreateOrConnectWithoutParentInput = {
@@ -9437,39 +8478,16 @@ export namespace Prisma {
     data: PageCreateManyParentInput | PageCreateManyParentInput[]
   }
 
-  export type PageRevisionCreateWithoutPageInput = {
-    id?: string
-    content: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    is_public?: boolean
-    note?: string | null
-  }
-
-  export type PageRevisionUncheckedCreateWithoutPageInput = {
-    id?: string
-    content: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    is_public?: boolean
-    note?: string | null
-  }
-
-  export type PageRevisionCreateOrConnectWithoutPageInput = {
-    where: PageRevisionWhereUniqueInput
-    create: XOR<PageRevisionCreateWithoutPageInput, PageRevisionUncheckedCreateWithoutPageInput>
-  }
-
-  export type PageRevisionCreateManyPageInputEnvelope = {
-    data: PageRevisionCreateManyPageInput | PageRevisionCreateManyPageInput[]
-  }
-
   export type CategoryCreateWithoutPagesInput = {
     id?: string
     name: string
+    version?: VersionCreateNestedOneWithoutCategoriesInput
   }
 
   export type CategoryUncheckedCreateWithoutPagesInput = {
     id?: string
     name: string
+    versionId?: number | null
   }
 
   export type CategoryCreateOrConnectWithoutPagesInput = {
@@ -9498,7 +8516,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     parent?: PageUpdateOneWithoutSubPagesNestedInput
-    revisions?: PageRevisionUpdateManyWithoutPageNestedInput
     category?: CategoryUpdateOneWithoutPagesNestedInput
   }
 
@@ -9513,7 +8530,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
 
   export type PageUpsertWithWhereUniqueWithoutParentInput = {
@@ -9532,34 +8548,6 @@ export namespace Prisma {
     data: XOR<PageUpdateManyMutationInput, PageUncheckedUpdateManyWithoutParentInput>
   }
 
-  export type PageRevisionUpsertWithWhereUniqueWithoutPageInput = {
-    where: PageRevisionWhereUniqueInput
-    update: XOR<PageRevisionUpdateWithoutPageInput, PageRevisionUncheckedUpdateWithoutPageInput>
-    create: XOR<PageRevisionCreateWithoutPageInput, PageRevisionUncheckedCreateWithoutPageInput>
-  }
-
-  export type PageRevisionUpdateWithWhereUniqueWithoutPageInput = {
-    where: PageRevisionWhereUniqueInput
-    data: XOR<PageRevisionUpdateWithoutPageInput, PageRevisionUncheckedUpdateWithoutPageInput>
-  }
-
-  export type PageRevisionUpdateManyWithWhereWithoutPageInput = {
-    where: PageRevisionScalarWhereInput
-    data: XOR<PageRevisionUpdateManyMutationInput, PageRevisionUncheckedUpdateManyWithoutPageInput>
-  }
-
-  export type PageRevisionScalarWhereInput = {
-    AND?: PageRevisionScalarWhereInput | PageRevisionScalarWhereInput[]
-    OR?: PageRevisionScalarWhereInput[]
-    NOT?: PageRevisionScalarWhereInput | PageRevisionScalarWhereInput[]
-    id?: StringFilter<"PageRevision"> | string
-    pageId?: StringFilter<"PageRevision"> | string
-    content?: JsonFilter<"PageRevision">
-    createdAt?: DateTimeFilter<"PageRevision"> | Date | string
-    is_public?: BoolFilter<"PageRevision"> | boolean
-    note?: StringNullableFilter<"PageRevision"> | string | null
-  }
-
   export type CategoryUpsertWithoutPagesInput = {
     update: XOR<CategoryUpdateWithoutPagesInput, CategoryUncheckedUpdateWithoutPagesInput>
     create: XOR<CategoryCreateWithoutPagesInput, CategoryUncheckedCreateWithoutPagesInput>
@@ -9574,83 +8562,35 @@ export namespace Prisma {
   export type CategoryUpdateWithoutPagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    version?: VersionUpdateOneWithoutCategoriesNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutPagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    versionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PageCreateWithoutRevisionsInput = {
+  export type CategoryCreateManyVersionInput = {
     id?: string
-    title: string
-    slug: string
-    content: JsonNullValueInput | InputJsonValue
-    order: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    is_public?: boolean
-    parent?: PageCreateNestedOneWithoutSubPagesInput
-    subPages?: PageCreateNestedManyWithoutParentInput
-    category?: CategoryCreateNestedOneWithoutPagesInput
+    name: string
   }
 
-  export type PageUncheckedCreateWithoutRevisionsInput = {
-    id?: string
-    title: string
-    slug: string
-    parentId?: string | null
-    content: JsonNullValueInput | InputJsonValue
-    order: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    is_public?: boolean
-    categoryId?: string | null
-    subPages?: PageUncheckedCreateNestedManyWithoutParentInput
-  }
-
-  export type PageCreateOrConnectWithoutRevisionsInput = {
-    where: PageWhereUniqueInput
-    create: XOR<PageCreateWithoutRevisionsInput, PageUncheckedCreateWithoutRevisionsInput>
-  }
-
-  export type PageUpsertWithoutRevisionsInput = {
-    update: XOR<PageUpdateWithoutRevisionsInput, PageUncheckedUpdateWithoutRevisionsInput>
-    create: XOR<PageCreateWithoutRevisionsInput, PageUncheckedCreateWithoutRevisionsInput>
-    where?: PageWhereInput
-  }
-
-  export type PageUpdateToOneWithWhereWithoutRevisionsInput = {
-    where?: PageWhereInput
-    data: XOR<PageUpdateWithoutRevisionsInput, PageUncheckedUpdateWithoutRevisionsInput>
-  }
-
-  export type PageUpdateWithoutRevisionsInput = {
+  export type CategoryUpdateWithoutVersionInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    order?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    parent?: PageUpdateOneWithoutSubPagesNestedInput
-    subPages?: PageUpdateManyWithoutParentNestedInput
-    category?: CategoryUpdateOneWithoutPagesNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    pages?: PageUpdateManyWithoutCategoryNestedInput
   }
 
-  export type PageUncheckedUpdateWithoutRevisionsInput = {
+  export type CategoryUncheckedUpdateWithoutVersionInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: JsonNullValueInput | InputJsonValue
-    order?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    pages?: PageUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type PageCreateManyCategoryInput = {
@@ -9676,7 +8616,6 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     parent?: PageUpdateOneWithoutSubPagesNestedInput
     subPages?: PageUpdateManyWithoutParentNestedInput
-    revisions?: PageRevisionUpdateManyWithoutPageNestedInput
   }
 
   export type PageUncheckedUpdateWithoutCategoryInput = {
@@ -9690,7 +8629,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
-    revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
 
   export type PageUncheckedUpdateManyWithoutCategoryInput = {
@@ -9717,14 +8655,6 @@ export namespace Prisma {
     categoryId?: string | null
   }
 
-  export type PageRevisionCreateManyPageInput = {
-    id?: string
-    content: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    is_public?: boolean
-    note?: string | null
-  }
-
   export type PageUpdateWithoutParentInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -9735,7 +8665,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     subPages?: PageUpdateManyWithoutParentNestedInput
-    revisions?: PageRevisionUpdateManyWithoutPageNestedInput
     category?: CategoryUpdateOneWithoutPagesNestedInput
   }
 
@@ -9750,7 +8679,6 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     subPages?: PageUncheckedUpdateManyWithoutParentNestedInput
-    revisions?: PageRevisionUncheckedUpdateManyWithoutPageNestedInput
   }
 
   export type PageUncheckedUpdateManyWithoutParentInput = {
@@ -9763,30 +8691,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PageRevisionUpdateWithoutPageInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PageRevisionUncheckedUpdateWithoutPageInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PageRevisionUncheckedUpdateManyWithoutPageInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_public?: BoolFieldUpdateOperationsInput | boolean
-    note?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

@@ -4,7 +4,7 @@ await getSettings()
 </script>
 
 <template>
-<div class="w-full h-13 bg-foreground text-background border-b z-50 flex justify-between items-center px-4">
+<div class="w-full h-13 bg-foreground/90 text-background border-b z-50 flex justify-between items-center px-4">
   <div class="flex items-center gap-4">
     <NuxtLink to="/">{{ settings?.name.value }}</NuxtLink>
     <NuxtLink to="/admin/pages"><Button variant="secondary">+ Créer une page</Button></NuxtLink>

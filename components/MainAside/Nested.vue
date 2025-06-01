@@ -40,6 +40,7 @@ const onPageMove = async (event, categoryId) => {
 const sortedCategories = ref<CategoryWithPages[]>([]);
 
 onMounted(() => {
+  if(!props.categories) return
   sortedCategories.value = [...props.categories]
       .map(category => ({
         ...category,

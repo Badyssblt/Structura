@@ -127,7 +127,14 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.VersionScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  isCurrent: 'isCurrent'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  versionId: 'versionId'
 };
 
 exports.Prisma.SettingScalarFieldEnum = {
@@ -135,11 +142,6 @@ exports.Prisma.SettingScalarFieldEnum = {
   key: 'key',
   value: 'value',
   updatedAt: 'updatedAt'
-};
-
-exports.Prisma.CategoryScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
 };
 
 exports.Prisma.PageScalarFieldEnum = {
@@ -155,15 +157,6 @@ exports.Prisma.PageScalarFieldEnum = {
   categoryId: 'categoryId'
 };
 
-exports.Prisma.PageRevisionScalarFieldEnum = {
-  id: 'id',
-  pageId: 'pageId',
-  content: 'content',
-  createdAt: 'createdAt',
-  is_public: 'is_public',
-  note: 'note'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -171,6 +164,11 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -184,19 +182,13 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
   User: 'User',
   Version: 'Version',
-  Setting: 'Setting',
   Category: 'Category',
-  Page: 'Page',
-  PageRevision: 'PageRevision'
+  Setting: 'Setting',
+  Page: 'Page'
 };
 
 /**

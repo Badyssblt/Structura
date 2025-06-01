@@ -22,9 +22,19 @@ model User {
 }
 
 model Version {
-  id        Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
+  name       String
+  createdAt  DateTime
+  categories Category[] @relation("VersionToCategories")
+  isCurrent  Boolean    @default(false)
+}
+
+model Category {
+  id        String   @id @default(cuid())
   name      String
-  createdAt DateTime @default(now())
+  pages     Page[]
+  versionId Int? // Devient optionnel
+  version   Version? @relation("VersionToCategories", fields: [versionId], references: [id])
 }
 
 model Setting {
@@ -34,35 +44,18 @@ model Setting {
   updatedAt DateTime @updatedAt
 }
 
-model Category {
-  id    String @id @default(cuid())
-  name  String
-  pages Page[] // Toutes les pages appartenant à cette catégorie
-}
-
 model Page {
-  id         String         @id @default(cuid())
+  id         String    @id @default(cuid())
   title      String
-  slug       String         @unique
+  slug       String    @unique
   parentId   String?
-  parent     Page?          @relation("PageToSubPages", fields: [parentId], references: [id])
-  subPages   Page[]         @relation("PageToSubPages")
+  parent     Page?     @relation("PageToSubPages", fields: [parentId], references: [id])
+  subPages   Page[]    @relation("PageToSubPages")
   content    Json
   order      Int
-  createdAt  DateTime       @default(now())
-  updatedAt  DateTime       @updatedAt
-  is_public  Boolean        @default(false)
-  revisions  PageRevision[]
-  categoryId String? // Clé étrangère optionnelle
-  category   Category?      @relation(fields: [categoryId], references: [id]) // Relation vers Category
-}
-
-model PageRevision {
-  id        String   @id @default(cuid())
-  page      Page     @relation(fields: [pageId], references: [id]) // Relier la révision à la page
-  pageId    String
-  content   Json // Contenu au moment de la révision
-  createdAt DateTime @default(now()) // Date de la révision
-  is_public Boolean  @default(false) // Est-ce que cette révision est publique ? Peut être différente de la page
-  note      String? // Optionnel : Note sur la révision (ex: "Correction orthographique")
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  is_public  Boolean   @default(false)
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
 }

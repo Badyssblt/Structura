@@ -39,6 +39,16 @@ const data = {
           url: "/admin/parameters"
         }
       ],
+    },
+    {
+      title: 'Versions',
+      url: '/admin/versions',
+      items: [
+        {
+          title: 'Gérer les versions',
+          url: '/admin/versions'
+        }
+      ]
     }
   ],
 }
