@@ -53,6 +53,20 @@ onMounted(() => {
       });
 });
 
+watch(() => props.categories, () => {
+  if(!props.categories) return
+  sortedCategories.value = [...props.categories]
+      .map(category => ({
+        ...category,
+        pages: [...category.pages].sort((a, b) => a.order - b.order)
+      }))
+      .sort((a, b) => {
+        if (a.name === 'no-category') return 1;
+        if (b.name === 'no-category') return -1;
+        return 0;
+      });
+})
+
 </script>
 
 <template>

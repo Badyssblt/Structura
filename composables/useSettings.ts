@@ -5,7 +5,7 @@ export const useSettings = () => {
 
 
     const getSettings = async () => {
-        const data = await $fetch<Settings>('/api/settings')
+        const data = await useApi().get('/api/settings')
         if (data) {
             settings.value = data
         }
@@ -14,7 +14,7 @@ export const useSettings = () => {
 
     const getOne = async(key: string) => {
         try {
-            const data = await $fetch("/api/settings/" + key)
+            const data = await useApi().get("/api/settings/" + key)
             if(data){
                 return data
             }

@@ -1,0 +1,1 @@
+export { default as ThemeColor } from "./Color.vue"

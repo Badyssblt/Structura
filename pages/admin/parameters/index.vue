@@ -11,6 +11,8 @@ import {
 import {toast} from "vue-sonner";
 import {useSettings} from "~/composables/useSettings";
 import {Checkbox} from "~/components/ui/checkbox";
+import {ThemeColor} from "~/components/Admin/parameters";
+
 definePageMeta({
   layout: "admin"
 })
@@ -22,6 +24,8 @@ await getAllCategories()
 const homepage = ref(settings.value?.homepage?.value || '');
 const language = ref(settings.value?.language?.value || '');
 const linkAside = ref(settings.value?.linkaside?.value || '');
+const colors = ref<Array>(settings.value?.theme?.value || [])
+
 
 const setHomePage = async () => {
   try {
@@ -52,6 +56,23 @@ const setLinkAside = async () => {
     })
     toast(linkAside.value ? "Barre latéral activée !" : "Barre latéral désactivée !")
   }catch (e) {
+
+  }
+}
+
+const setColor = (color: ThemeColor) => {
+  colors.value = [
+    ...colors.value.filter((c) => c.type !== color.type),
+    color
+  ]
+}
+
+const setTheme = async () => {
+  try {
+    await updateSettings({
+      theme: JSON.stringify(colors.value)
+    })
+  }catch (e){
 
   }
 }
@@ -116,8 +137,17 @@ const setLinkAside = async () => {
             </p>
           </div>
         </div>
-      </div>
 
+
+      </div>
+      <div>
+        <h3 class="text-lg font-medium border-b m-4 pb-2">Thème</h3>
+        <div>
+          <ThemeColor label="Couleur principale" :type="'primary'" :value="'#000000'" @update="setColor"/>
+          <ThemeColor label="Couleur de fond" :type="'background'" :value="'#000000'" @update="setColor"/>
+          <Button @click="setTheme">Modifier le thème</Button>
+        </div>
+      </div>
     </div>
 
   </div>

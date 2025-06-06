@@ -9,10 +9,10 @@ export const useCategory = () => {
     const isPatchingCategory = useState<boolean>('isPatchingCategory', () => false)
     const isCreatingCategory = useState<boolean>('isCreatingCategory', () => false)
 
-    const getAllCategories = async (): Promise<Category[]> => {
+    const getAllCategories = async (versionId: number): Promise<Category[]> => {
         isLoadingCategories.value = true
         try {
-            const response = await $fetch<Category[]>('/api/category')
+            const response = await useApi().get('/api/category?versionId=' + versionId)
 
             categories.value = response
         }catch (e) {
@@ -90,7 +90,7 @@ export const useCategory = () => {
         }
 
 
-        await getAllCategories()
+        await getAllCategories(newCategoryData.versionId)
 
 
         isCreatingCategory.value = false

@@ -2,12 +2,14 @@
 import ContextMenu from './ContextMenu.vue'
 import Nested from "./Nested.vue"
 
+const currentVersion = await useVersion().getCurrentVersion()
+
+
 const { pages, getAllPages } = usePages()
 await getAllPages()
 
 const { categories, getAllCategories, deleteCategory } = useCategory()
-await getAllCategories()
-
+await getAllCategories(currentVersion.id)
 
 
 const props = withDefaults(defineProps<{
@@ -50,6 +52,7 @@ function handleSelect(action: string) {
         :x="contextMenuX"
         :y="contextMenuY"
         :show="showContextMenu"
+        :version="currentVersion"
         @close="closeContextMenu"
         @select="handleSelect"
     />

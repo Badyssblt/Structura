@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
     const body = await readBody(event)
 
-    const { name } = body
+    const { name, versionId } = body
 
     if (!name) {
         return sendError(event, createError({
@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
         const newCategory = await prisma.category.create({
             data: {
                 name,
+                versionId
             }
         })
 

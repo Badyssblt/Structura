@@ -12,13 +12,19 @@ export const useVersion = () => {
     const getAllVersions = async (): Promise<Version[]> => {
         isLoadingVersions.value = true
         try {
-            const response = await $fetch<Version[]>('/api/version')
+            const response = await useApi().get('/api/version')
             versions.value = response
         } catch (e) {
             console.log(e)
         }
         isLoadingVersions.value = false
         return versions.value
+    }
+
+    const getCurrentVersion = async () => {
+        const versions = getAllVersions()
+
+        return (await versions).find(version => version.isCurrent)
     }
 
     const getVersionBySlug = async (slug: string): Promise<Version> => {
@@ -99,6 +105,7 @@ export const useVersion = () => {
         deleteVersion,
         patchVersion,
         createVersion,
+        getCurrentVersion,
         versions,
         currentVersion,
         isLoadingVersions,

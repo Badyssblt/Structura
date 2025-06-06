@@ -22,3 +22,8 @@ export type Category = {
     name: string,
     pages: Page[]
 }
+
+export type ThemeColor = {
+    type: string,
+    value: string
+}

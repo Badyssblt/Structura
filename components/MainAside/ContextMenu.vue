@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import {useCategory} from "~/composables/useCategory";
-import {toast} from "vue-sonner";
 
 
 const { createCategory } = useCategory()
@@ -17,7 +16,8 @@ const { createCategory } = useCategory()
 const props = defineProps<{
   x: number
   y: number
-  show: boolean
+  show: boolean,
+  version: Object
 }>()
 
 const emit = defineEmits(['close', 'select'])
@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
               Remplissez les champs pour créer une nouvelle catégorie.
             </DialogDescription>
           </DialogHeader>
-          <form @submit.prevent="() => createCategory({ name: categoryName })">
+          <form @submit.prevent="() => createCategory({ name: categoryName, versionId: version.id })">
             <div class="flex flex-col gap-1">
               <Label for="name" class="text-right">Nom</Label>
               <Input id="name" class="col-span-3" v-model="categoryName"/>

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   modules: [
     'shadcn-nuxt',
     'nuxt-tiptap-editor',
-    '@nuxt/icon'
+    '@nuxt/icon',
   ],
     tiptap: {
         prefix: 'Tiptap',
