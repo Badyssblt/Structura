@@ -13,7 +13,6 @@ export const useCategory = () => {
         isLoadingCategories.value = true
         try {
             const response = await useApi().get('/api/category?versionId=' + versionId)
-
             categories.value = response
         }catch (e) {
             console.log(e)

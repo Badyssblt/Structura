@@ -2,17 +2,17 @@ export const useApi = () => {
     const config = useRuntimeConfig();
     const baseUrl = config.public.apiBase || '';
 
-    const isClient = process.client;
-    const isServer = process.server;
+    const isClient = import.meta.client;
+    const isServer = import.meta.server;
 
-    const get = async <T>(endpoint: string, params?: Record<string, any>) => {
+    const get = async <T>(endpoint: string, params?: Record<string, any>, cache?: boolean = true) => {
         const key = `api:${endpoint}:${JSON.stringify(params || {})}`;
 
         // Reuse data if it already exists
         const state = useState<T | null>(key, () => null);
 
         // If already fetched (e.g. from SSR), return cached data
-        if (state.value) return state.value;
+        if (cache) return state.value;
 
         const url = `${baseUrl}${endpoint}`;
 
